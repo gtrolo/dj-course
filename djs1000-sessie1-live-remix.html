@@ -1,0 +1,1508 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Leer remixen met Dave | Pioneer DJS-1000 Sessie 1</title>
+  <style>
+    :root {
+      --bg: #121214;
+      --ink: #ffffff;
+      --muted: #a0a0aa;
+      --panel: #1e1e22;
+      --panel-soft: rgba(30, 30, 34, .82);
+      --panel-deep: #151519;
+      --line: rgba(255,255,255,.11);
+      --line-strong: rgba(255,255,255,.2);
+      --blue: #0076ff;
+      --blue-soft: rgba(0,118,255,.15);
+      --green: #20d789;
+      --orange: #ff9f0a;
+      --red: #ff3b30;
+      --setup: #0076ff;
+      --sampling: #20d789;
+      --patterns: #ff9f0a;
+      --performance: #ff3b30;
+      --shadow: 0 28px 90px rgba(0,0,0,.42);
+      --radius: 8px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      letter-spacing: 0;
+      line-height: 1.55;
+      background:
+        radial-gradient(circle at 11% 4%, rgba(0,118,255,.22), transparent 29rem),
+        radial-gradient(circle at 91% 18%, rgba(32,215,137,.11), transparent 28rem),
+        radial-gradient(circle at 58% 82%, rgba(255,159,10,.08), transparent 24rem),
+        linear-gradient(180deg, #101012 0%, #121214 48%, #0d0d0f 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: .26;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, #000, transparent 82%);
+    }
+
+    a { color: inherit; }
+    strong { color: var(--ink); }
+
+    .page,
+    .topbar-inner {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(18,18,20,.78);
+      backdrop-filter: blur(18px);
+    }
+
+    .topbar-inner {
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      font-weight: 900;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 auto;
+      border-radius: 7px;
+      border: 1px solid rgba(0,118,255,.72);
+      background:
+        linear-gradient(135deg, rgba(0,118,255,.94), rgba(32,215,137,.28)),
+        #101014;
+      position: relative;
+      box-shadow: 0 0 32px rgba(0,118,255,.36);
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 2px solid rgba(255,255,255,.86);
+      border-radius: 50%;
+    }
+
+    .nav {
+      display: flex;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      padding: 8px 10px;
+      border: 1px solid transparent;
+      border-radius: 7px;
+    }
+
+    .nav a:hover {
+      color: var(--ink);
+      border-color: var(--line);
+      background: rgba(255,255,255,.045);
+    }
+
+    .hero {
+      min-height: 640px;
+      padding: 74px 0 42px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) 420px;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      width: fit-content;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #cfe3ff;
+      border: 1px solid rgba(0,118,255,.45);
+      background: rgba(0,118,255,.12);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      box-shadow: 0 0 30px rgba(0,118,255,.14);
+    }
+
+    h1 {
+      margin: 22px 0 18px;
+      max-width: 880px;
+      font-size: clamp(43px, 7vw, 88px);
+      line-height: .89;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    h1 span {
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,.72);
+      text-shadow: 0 0 34px rgba(0,118,255,.18);
+    }
+
+    .subtitle {
+      max-width: 750px;
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 22px);
+      line-height: 1.5;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .button {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0 16px;
+      border-radius: 7px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: var(--panel);
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 900;
+      box-shadow: 0 16px 36px rgba(0,0,0,.25);
+      transition: .18s ease;
+    }
+
+    .button.primary {
+      border-color: rgba(0,118,255,.72);
+      background: linear-gradient(180deg, #1682ff, #0064da);
+      box-shadow: 0 0 42px rgba(0,118,255,.3), 0 16px 36px rgba(0,0,0,.35);
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.08);
+    }
+
+    .stats {
+      max-width: 760px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .stat {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(30,30,34,.72);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 25px;
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .deck {
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.025)),
+        var(--panel);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .deck::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,118,255,.16), transparent 36%, rgba(32,215,137,.08));
+      pointer-events: none;
+    }
+
+    .deck-screen,
+    .pads,
+    .deck-labels {
+      position: relative;
+    }
+
+    .deck-screen {
+      min-height: 176px;
+      border: 1px solid rgba(0,118,255,.38);
+      border-radius: 7px;
+      background:
+        linear-gradient(180deg, rgba(0,118,255,.16), rgba(0,0,0,.18)),
+        #101116;
+      padding: 18px;
+      box-shadow: inset 0 0 32px rgba(0,118,255,.13);
+    }
+
+    .meter {
+      margin-top: 20px;
+      height: 74px;
+      display: flex;
+      align-items: end;
+      gap: 5px;
+    }
+
+    .meter i {
+      display: block;
+      flex: 1;
+      min-width: 4px;
+      border-radius: 3px 3px 0 0;
+      background: linear-gradient(180deg, var(--green), var(--blue));
+      box-shadow: 0 0 16px rgba(0,118,255,.28);
+    }
+
+    .deck-labels {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 12px 0 0;
+    }
+
+    .deck-labels span {
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 7px;
+      padding: 8px;
+      color: var(--muted);
+      background: rgba(0,0,0,.16);
+      font-size: 11px;
+      font-weight: 900;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .pads {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .pad {
+      aspect-ratio: 1;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 7px;
+      background: #151519;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,.3);
+    }
+
+    .pad.active {
+      border-color: rgba(0,118,255,.7);
+      background: linear-gradient(135deg, rgba(0,118,255,.92), rgba(32,215,137,.42));
+      box-shadow: 0 0 28px rgba(0,118,255,.32);
+    }
+
+    .pad.warn {
+      border-color: rgba(255,159,10,.72);
+      background: linear-gradient(135deg, rgba(255,159,10,.9), rgba(255,59,48,.45));
+      box-shadow: 0 0 24px rgba(255,159,10,.22);
+    }
+
+    section { padding: 42px 0; }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .section-kicker {
+      margin-bottom: 10px;
+      color: var(--blue);
+      font-weight: 900;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .section-note {
+      max-width: 500px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: .96fr 1.04fr;
+      gap: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card,
+    .module,
+    .workflow-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel-soft);
+      box-shadow: 0 18px 55px rgba(0,0,0,.22);
+    }
+
+    .card {
+      padding: 22px;
+    }
+
+    .card h3,
+    .workflow-card h3 {
+      margin: 0 0 14px;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .gear-list,
+    .dense-list,
+    .legal ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .gear-list li,
+    .dense-list li,
+    .legal li {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 13px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 7px;
+      background: rgba(255,255,255,.035);
+      color: var(--muted);
+    }
+
+    .icon {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(0,118,255,.35);
+      border-radius: 7px;
+      background: rgba(0,118,255,.12);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      overflow: hidden;
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      padding: 15px 14px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    th {
+      color: var(--ink);
+      background: rgba(0,118,255,.16);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    td {
+      color: var(--muted);
+      background: rgba(255,255,255,.025);
+    }
+
+    tr:nth-child(even) td {
+      background: rgba(255,255,255,.045);
+    }
+
+    .callout {
+      margin-top: 16px;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.045);
+      color: var(--muted);
+      padding: 17px 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .callout::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--blue);
+    }
+
+    .callout.exercise {
+      border-color: rgba(32,215,137,.34);
+      background: rgba(32,215,137,.08);
+    }
+
+    .callout.exercise::before { background: var(--green); }
+
+    .callout.warning {
+      border-color: rgba(255,59,48,.4);
+      background: rgba(255,59,48,.08);
+    }
+
+    .callout.warning::before { background: var(--red); }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .workflow-card {
+      padding: 16px;
+      min-height: 168px;
+      background:
+        linear-gradient(180deg, rgba(0,118,255,.07), transparent),
+        rgba(30,30,34,.86);
+    }
+
+    .workflow-card b {
+      display: inline-grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 7px;
+      color: var(--ink);
+      background: var(--blue);
+      margin-bottom: 14px;
+      box-shadow: 0 0 24px rgba(0,118,255,.28);
+    }
+
+    .workflow-card h3 {
+      margin-bottom: 8px;
+      font-size: 14px;
+      line-height: 1.2;
+    }
+
+    .workflow-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .lesson-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 0 16px;
+      padding: 10px;
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.026);
+      overflow-x: auto;
+      scrollbar-width: none;
+      flex-wrap: nowrap;
+    }
+
+    .lesson-toolbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-strip,
+    .toolbar-actions,
+    .segmented,
+    .sort-control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .filter-strip {
+      flex: 1 1 auto;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .filter-strip::-webkit-scrollbar {
+      display: none;
+    }
+
+    .toolbar-label {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      white-space: nowrap;
+    }
+
+    .toolbar-actions,
+    .sort-control,
+    .segmented {
+      flex: 0 0 auto;
+    }
+
+    .legend-item,
+    .view-btn {
+      min-height: 32px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 7px;
+      background: rgba(255,255,255,.035);
+      color: var(--muted);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 800;
+      transition: .16s ease;
+      white-space: nowrap;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 11px;
+      cursor: default;
+    }
+
+    .view-btn:hover,
+    .sort-select:hover {
+      color: var(--ink);
+      border-color: rgba(0,118,255,.28);
+      background: rgba(0,118,255,.055);
+    }
+
+    .view-btn.active {
+      color: #d9eaff;
+      border-color: rgba(0,118,255,.42);
+      background: rgba(0,118,255,.105);
+      box-shadow: inset 0 0 0 1px rgba(0,118,255,.08);
+    }
+
+    .color-dot {
+      width: 8px;
+      height: 8px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--dot, var(--blue));
+      box-shadow: 0 0 14px color-mix(in srgb, var(--dot, var(--blue)) 55%, transparent);
+    }
+
+    .legend-item[data-tone="setup"],
+    .module-tag[data-tone="setup"] { --dot: var(--setup); }
+
+    .legend-item[data-tone="sampling"],
+    .module-tag[data-tone="sampling"] { --dot: var(--sampling); }
+
+    .legend-item[data-tone="patterns"],
+    .module-tag[data-tone="patterns"] { --dot: var(--patterns); }
+
+    .legend-item[data-tone="performance"],
+    .module-tag[data-tone="performance"] { --dot: var(--performance); }
+
+    .sort-select {
+      height: 32px;
+      min-width: 136px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 7px;
+      background: rgba(255,255,255,.035);
+      color: var(--muted);
+      padding: 0 30px 0 10px;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 800;
+      outline: none;
+    }
+
+    .view-btn {
+      width: 34px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+    }
+
+    .view-btn svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      fill: none;
+    }
+
+    .timeline.grid-view {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .timeline.grid-view .module {
+      grid-template-columns: 1fr;
+    }
+
+    .timeline.grid-view .module-index {
+      min-height: auto;
+      flex-direction: row;
+      align-items: end;
+    }
+
+    .module {
+      display: grid;
+      grid-template-columns: 112px 1fr;
+      gap: 18px;
+      padding: 18px;
+      background:
+        linear-gradient(90deg, rgba(0,118,255,.08), transparent 38%),
+        rgba(30,30,34,.9);
+    }
+
+    .module-index {
+      min-height: 112px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 14px;
+      border: 1px solid rgba(0,118,255,.35);
+      border-radius: 7px;
+      background:
+        linear-gradient(180deg, rgba(0,118,255,.18), rgba(0,118,255,.04)),
+        var(--panel-deep);
+    }
+
+    .module-index span {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+    }
+
+    .module-index b {
+      font-size: 44px;
+      line-height: .9;
+    }
+
+    .module h3 {
+      margin: 0 0 8px;
+      font-size: clamp(22px, 3vw, 31px);
+      line-height: 1.1;
+    }
+
+    .module-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 0 0 12px;
+    }
+
+    .module-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 25px;
+      padding: 0 9px;
+      border: 1px solid color-mix(in srgb, var(--dot, var(--blue)) 38%, rgba(255,255,255,.08));
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--dot, var(--blue)) 9%, transparent);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .module p {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    .module ol,
+    .module ul {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .module li {
+      margin: 8px 0;
+    }
+
+    .pattern-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 14px 0 4px;
+    }
+
+    .pattern {
+      min-height: 98px;
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 7px;
+      background: rgba(255,255,255,.035);
+    }
+
+    .pattern b {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--blue);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .pattern span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .mix-map {
+      display: grid;
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .mix-step {
+      min-height: 86px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 10px;
+      border-radius: 7px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.035);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .mix-step strong {
+      color: var(--ink);
+      font-size: 13px;
+    }
+
+    .mix-step.active {
+      border-color: rgba(0,118,255,.48);
+      background: rgba(0,118,255,.1);
+    }
+
+    .mix-step.break {
+      border-color: rgba(255,159,10,.4);
+      background: rgba(255,159,10,.08);
+    }
+
+    .legal {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .legal-badge {
+      min-height: 230px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px;
+      border: 1px solid rgba(255,159,10,.38);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(255,159,10,.15), rgba(255,59,48,.07)),
+        var(--panel);
+    }
+
+    .legal-badge .big {
+      font-size: 76px;
+      line-height: 1;
+    }
+
+    .checklist-wrap {
+      padding: 24px;
+      border: 1px solid rgba(0,118,255,.36);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(0,118,255,.1), transparent 45%),
+        rgba(30,30,34,.92);
+      box-shadow: var(--shadow);
+    }
+
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 18px 0 0;
+    }
+
+    .check-item {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: rgba(255,255,255,.035);
+      color: var(--muted);
+      cursor: pointer;
+      transition: .18s ease;
+    }
+
+    .check-item:hover {
+      color: var(--ink);
+      border-color: rgba(0,118,255,.48);
+      background: rgba(0,118,255,.07);
+    }
+
+    .check-item input {
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      flex: 0 0 auto;
+      border-radius: 5px;
+      border: 1px solid rgba(255,255,255,.35);
+      background: #111;
+      position: relative;
+    }
+
+    .check-item input:checked {
+      border-color: var(--green);
+      background: var(--green);
+      box-shadow: 0 0 22px rgba(32,215,137,.28);
+    }
+
+    .check-item input:checked::after {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: 6px;
+      width: 10px;
+      height: 6px;
+      border-left: 2px solid #06130d;
+      border-bottom: 2px solid #06130d;
+      transform: rotate(-45deg);
+    }
+
+    .check-item:has(input:checked) {
+      color: var(--ink);
+      border-color: rgba(32,215,137,.38);
+      background: rgba(32,215,137,.08);
+    }
+
+    .timepath {
+      margin-top: 18px;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 7px;
+      color: var(--muted);
+      background: rgba(0,0,0,.16);
+    }
+
+    .footer {
+      padding: 28px 0 54px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    @media (max-width: 1060px) {
+      .workflow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .mix-map { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .timeline.grid-view { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 920px) {
+      .hero,
+      .grid-2,
+      .legal {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .deck {
+        max-width: 520px;
+      }
+
+      .nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .page,
+      .topbar-inner {
+        width: min(100% - 22px, var(--max));
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 46px;
+      }
+
+      .stats,
+      .workflow,
+      .checklist,
+      .pattern-grid,
+      .mix-map {
+        grid-template-columns: 1fr;
+      }
+
+      .module {
+        grid-template-columns: 1fr;
+      }
+
+      .module-index {
+        min-height: auto;
+        flex-direction: row;
+        align-items: end;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-note {
+        margin-top: 12px;
+      }
+
+      .segmented {
+        justify-content: flex-start;
+      }
+
+      th,
+      td {
+        padding: 12px 10px;
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"></div>
+        DJS-1000 Remix Course
+      </div>
+      <nav class="nav" aria-label="Cursusnavigatie">
+        <a href="#setup">Setup</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#modules">Modules</a>
+        <a href="#checklist">Checklist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">🎚️ Sessie 1 · Bax Music livestream · Dave</div>
+        <h1>Leer remixen met de <span>Pioneer DJS-1000</span></h1>
+        <p class="subtitle">
+          Een complete online cursuspagina op basis van het volledige transcript: sample opnemen vanaf CDJ of line-in,
+          editen op de grid, patterns kopiëren, drums toevoegen, volumes balanceren en binnen 45 minuten een live-remix schetsen.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#modules">▶ Volg de sessie</a>
+          <a class="button" href="#workflow">↳ Bekijk workflow</a>
+        </div>
+        <div class="stats" aria-label="Cursuscijfers">
+          <div class="stat"><strong>45</strong><span>Minuten live build</span></div>
+          <div class="stat"><strong>16</strong><span>Patterns</span></div>
+          <div class="stat"><strong>64</strong><span>Bars als werkcanvas</span></div>
+          <div class="stat"><strong>104</strong><span>BPM basisgroove</span></div>
+        </div>
+      </div>
+
+      <aside class="deck" aria-label="DJS-1000 visualisatie">
+        <div class="deck-screen">
+          <strong>SESSION 01 · SAMPLE → PATTERN → REMIX</strong>
+          <div class="meter" aria-hidden="true">
+            <i style="height:22%"></i><i style="height:62%"></i><i style="height:38%"></i><i style="height:88%"></i>
+            <i style="height:54%"></i><i style="height:74%"></i><i style="height:31%"></i><i style="height:96%"></i>
+            <i style="height:46%"></i><i style="height:68%"></i><i style="height:27%"></i><i style="height:82%"></i>
+            <i style="height:58%"></i><i style="height:36%"></i><i style="height:72%"></i><i style="height:44%"></i>
+          </div>
+          <div class="deck-labels">
+            <span>Input gain</span>
+            <span>Grid edit</span>
+            <span>Time stretch</span>
+          </div>
+        </div>
+        <div class="pads" aria-hidden="true">
+          <div class="pad active"></div><div class="pad"></div><div class="pad active"></div><div class="pad"></div>
+          <div class="pad"></div><div class="pad warn"></div><div class="pad"></div><div class="pad active"></div>
+          <div class="pad active"></div><div class="pad"></div><div class="pad"></div><div class="pad"></div>
+          <div class="pad"></div><div class="pad active"></div><div class="pad warn"></div><div class="pad"></div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="setup">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Hardware dashboard</div>
+          <h2>Setup uit de stream</h2>
+        </div>
+        <p class="section-note">
+          Dave gebruikt de DJS-1000 gekoppeld aan een Nexus-set, maar benadrukt dat je hem ook standalone of met andere bronnen kunt gebruiken.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <article class="card">
+          <h3>📋 Wat je nodig hebt</h3>
+          <ul class="gear-list">
+            <li><span class="icon">🎛️</span><span><strong>Pioneer DJ DJS-1000</strong><br>Standalone sampler voor pads, patterns, sampling en sequencing.</span></li>
+            <li><span class="icon">🔗</span><span><strong>CDJ + DJM-NXS2 / Nexus-set</strong><br>In de stream gekoppeld via de Pioneer-link omgeving, zodat de set synchroon kan lopen.</span></li>
+            <li><span class="icon">🎚️</span><span><strong>Line-in bron</strong><br>Een CDJ, iPhone of andere audio-bron kan worden opgenomen als sample. Zingen kan ook, maar Dave raadt zichzelf dat niet aan.</span></li>
+            <li><span class="icon">💾</span><span><strong>USB-stick</strong><br>Voor sample packs en om opgenomen samples meteen veilig op te slaan.</span></li>
+            <li><span class="icon">📦</span><span><strong>Sample pack</strong><br>Dave noemt onder andere KSHMR-achtige producer packs als bruikbare bron naast factory samples.</span></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>🧱 Kernbegrippen</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Functie</th>
+                <th>Wat het doet</th>
+                <th>Gebruik in sessie 1</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Project</strong></td>
+                <td>Nieuwe werkomgeving voor je remix.</td>
+                <td>Start leeg, naam later pas kiezen.</td>
+              </tr>
+              <tr>
+                <td><strong>Pattern</strong></td>
+                <td>Een muzikale sectie binnen je remix.</td>
+                <td>Kopiëren van 1 naar 2, 3, 4 enzovoort en telkens iets toevoegen of weghalen.</td>
+              </tr>
+              <tr>
+                <td><strong>16 pads</strong></td>
+                <td>Slots voor samples, kicks, snares, snaps, vocals en FX.</td>
+                <td>Dave bouwt laag voor laag: vocal, kick, snare, snap, extra stempels, pad en bassline.</td>
+              </tr>
+              <tr>
+                <td><strong>Sample mode</strong></td>
+                <td>Start- en eindpunt strak op de grid zetten.</td>
+                <td>Nodig als de opname te zacht, te rauw of niet strak genoeg is.</td>
+              </tr>
+              <tr>
+                <td><strong>Root slice</strong></td>
+                <td>Een sample opdelen in kleine partjes.</td>
+                <td>Dave noemt het een digitale cake: elk partje triggert een bruikbaar stukje audio.</td>
+              </tr>
+              <tr>
+                <td><strong>Time stretch / Sync</strong></td>
+                <td>Samples met het projecttempo laten meelopen.</td>
+                <td>Van 100 naar 104 BPM, later testen op 128 BPM zonder dat de sample ontspoort.</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="callout">
+            💡 <strong>Sturing:</strong> Denk als DJ: intro, opbouw, break, drop en refrein. Je tekent de remix in door patterns slim te kopiëren en per pattern nieuwe energie toe te voegen.
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="workflow">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Live build route</div>
+          <h2>De 6 stappen uit de livestream</h2>
+        </div>
+        <p class="section-note">
+          Dit is de concrete route die Dave in sessie 1 volgt: snel kiezen, opnemen, corrigeren, opslaan en doorbouwen.
+        </p>
+      </div>
+
+      <div class="workflow">
+        <article class="workflow-card">
+          <b>1</b>
+          <h3>Nieuw project</h3>
+          <p>Begin zonder naam, zet het tempo eerst rond 100 BPM en kies pas later waar de track echt heen gaat.</p>
+        </article>
+        <article class="workflow-card">
+          <b>2</b>
+          <h3>Catchy sample zoeken</h3>
+          <p>Kies een herkenbaar klein fragment. Geen hele plaat, maar een korte hook of stempel.</p>
+        </article>
+        <article class="workflow-card">
+          <b>3</b>
+          <h3>Opnemen via input</h3>
+          <p>Neem 4 tellen op vanaf CDJ of line-in. Is het te zacht? Verhoog input gain en mixer trim.</p>
+        </article>
+        <article class="workflow-card">
+          <b>4</b>
+          <h3>Grid strak zetten</h3>
+          <p>Open sample mode, corrigeer start/einde en verwijder rare staartjes of harde pieken.</p>
+        </article>
+        <article class="workflow-card">
+          <b>5</b>
+          <h3>Opslaan op USB</h3>
+          <p>Bewaar opgenomen stempels direct. Twee uur knutselen zonder samples te saven eindigt met pijn.</p>
+        </article>
+        <article class="workflow-card">
+          <b>6</b>
+          <h3>Patterns kopiëren</h3>
+          <p>Copy/paste pattern 1 naar 2, 3, 4 enzovoort. Per kopie voeg je een laag of overgang toe.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="modules">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Cursusmodules</div>
+          <h2>Sessie 1 als lessenreeks</h2>
+        </div>
+        <p class="section-note">
+          De livestream is omgezet naar modules die je stap voor stap kunt uitvoeren op je eigen DJS-1000.
+        </p>
+      </div>
+
+      <div class="lesson-toolbar" aria-label="Module legenda en weergave">
+        <div class="filter-strip" aria-label="Kleurlegenda modules">
+          <span class="toolbar-label">Legenda</span>
+          <span class="legend-item" data-tone="setup"><span class="color-dot" aria-hidden="true"></span>Setup</span>
+          <span class="legend-item" data-tone="sampling"><span class="color-dot" aria-hidden="true"></span>Sampling</span>
+          <span class="legend-item" data-tone="patterns"><span class="color-dot" aria-hidden="true"></span>Patterns</span>
+          <span class="legend-item" data-tone="performance"><span class="color-dot" aria-hidden="true"></span>Live</span>
+        </div>
+        <div class="toolbar-actions">
+          <label class="sort-control" aria-label="Sorteer modules">
+            <span class="toolbar-label">Sorteren op</span>
+            <select class="sort-select" id="module-sort">
+              <option value="asc">Lesvolgorde</option>
+              <option value="desc">Laatste eerst</option>
+            </select>
+          </label>
+          <div class="segmented" role="group" aria-label="Weergave">
+            <button class="view-btn active" type="button" data-view="list" aria-label="Lijstweergave">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+            </button>
+            <button class="view-btn" type="button" data-view="grid" aria-label="Gridweergave">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline" id="module-list">
+        <article class="module" data-order="1" data-tags="setup">
+          <div class="module-index"><span>Module</span><b>01</b></div>
+          <div>
+            <div class="module-meta"><span class="module-tag" data-tone="setup"><span class="color-dot" aria-hidden="true"></span>Setup</span></div>
+            <h3>Routing, project en tempo</h3>
+            <p>Voordat je produceert, moet je weten waar je audio vandaan komt en welk tempo je basis wordt.</p>
+            <ol>
+              <li>Sluit de DJS-1000 aan op je mixer/CDJ-set of gebruik hem standalone.</li>
+              <li>Maak een <strong>nieuw project</strong> aan en geef het nog geen naam als de richting nog open ligt.</li>
+              <li>Start rond <strong>100 BPM</strong> als makkelijke basis voor een moombahton-achtige groove.</li>
+              <li>Schakel <strong>time stretch</strong> of sync in wanneer samples met het tempo moeten meebewegen.</li>
+            </ol>
+            <div class="callout warning">⚠️ <strong>Tempo-check:</strong> Neem je een bron op 104 BPM op in een project van 100 BPM? Zet het project op 104 of zorg dat de sample strak getimestretched wordt.</div>
+          </div>
+        </article>
+
+        <article class="module" data-order="2" data-tags="sampling">
+          <div class="module-index"><span>Module</span><b>02</b></div>
+          <div>
+            <div class="module-meta"><span class="module-tag" data-tone="sampling"><span class="color-dot" aria-hidden="true"></span>Sampling</span></div>
+            <h3>Sample opnemen vanaf CDJ of line-in</h3>
+            <p>De kern van deze sessie: een klein herkenbaar stukje opnemen en daar je eigen beat onder bouwen.</p>
+            <ol>
+              <li>Kies een catchy fragment van ongeveer <strong>4 tellen</strong>.</li>
+              <li>Druk op sampling en neem stereo op vanaf CDJ, iPhone of andere lijnbron.</li>
+              <li>Is de opname te zacht? Zet <strong>input gain</strong> op de DJS omhoog en geef op de mixer iets meer trim.</li>
+              <li>Neem eventueel meerdere varianten op, bijvoorbeeld een korte hook en een tweede stempel.</li>
+            </ol>
+            <div class="callout exercise">🎯 <strong>Oefening:</strong> Neem twee korte samples op: een vocal-hook en een extra herkenbaar geluid. Zet ze op losse pads.</div>
+          </div>
+        </article>
+
+        <article class="module" data-order="3" data-tags="sampling">
+          <div class="module-index"><span>Module</span><b>03</b></div>
+          <div>
+            <div class="module-meta"><span class="module-tag" data-tone="sampling"><span class="color-dot" aria-hidden="true"></span>Sampling</span></div>
+            <h3>Sample edit: grid, staartjes en root slice</h3>
+            <p>Een sample is pas bruikbaar als hij precies start, eindigt en muzikaal triggert.</p>
+            <ol>
+              <li>Ga naar <strong>sample mode</strong> en zet de sample exact op de grid.</li>
+              <li>Luister naar het einde: knip rare staartjes, stiltes of harde pieken weg.</li>
+              <li>Gebruik <strong>root slice</strong> om een opname in partjes te verdelen.</li>
+              <li>Trigger kleine stukjes als one-shots. Dat is live vaak makkelijker dan lange loops.</li>
+            </ol>
+            <div class="callout">💡 <strong>Sturing:</strong> Dave beschrijft root slice als een digitale cake: elk plakje bevat een bruikbaar stukje sample dat je ritmisch kunt inzetten.</div>
+          </div>
+        </article>
+
+        <article class="module" data-order="4" data-tags="sampling patterns">
+          <div class="module-index"><span>Module</span><b>04</b></div>
+          <div>
+            <div class="module-meta">
+              <span class="module-tag" data-tone="sampling"><span class="color-dot" aria-hidden="true"></span>Sampling</span>
+              <span class="module-tag" data-tone="patterns"><span class="color-dot" aria-hidden="true"></span>Patterns</span>
+            </div>
+            <h3>Beat bouwen: kick, snare, snap en extra stempels</h3>
+            <p>De remix begint kaal. Daarna vul je hem met drums en korte ritmische geluiden.</p>
+            <ol>
+              <li>Zoek een <strong>kick</strong> die past bij de sfeer. Dave kiest geen hardstyle-remix, maar een stevige basisgroove.</li>
+              <li>Programmeer de kick op de witte step-grid onder de pad.</li>
+              <li>Voeg daarna een <strong>snare</strong> of <strong>snap</strong> toe. De juiste sound zoeken kost vaak de meeste tijd.</li>
+              <li>Gebruik extra stempels uit sample packs om de remix voller en minder droog te maken.</li>
+            </ol>
+            <div class="callout warning">⚠️ <strong>Soundselectie:</strong> Een snare die niet past, trekt de hele remix scheef. Vervangen is beter dan blijven forceren.</div>
+          </div>
+        </article>
+
+        <article class="module" data-order="5" data-tags="patterns">
+          <div class="module-index"><span>Module</span><b>05</b></div>
+          <div>
+            <div class="module-meta"><span class="module-tag" data-tone="patterns"><span class="color-dot" aria-hidden="true"></span>Patterns</span></div>
+            <h3>Pattern-structuur: kopiëren, variëren, opbouwen</h3>
+            <p>Dave bouwt snel door door patterns te kopiëren en telkens een andere rol te geven.</p>
+            <div class="pattern-grid">
+              <div class="pattern"><b>Pattern 1</b><span>Intro en eerste vocal-stempel met kick.</span></div>
+              <div class="pattern"><b>Pattern 2</b><span>Kopie van 1, sample anders gesliced of weggelaten.</span></div>
+              <div class="pattern"><b>Pattern 3</b><span>Nieuwe drumlaag: snare, snap of extra ritme.</span></div>
+              <div class="pattern"><b>Pattern 4</b><span>Extra sample erbij; eerste echte herkenbare groove.</span></div>
+            </div>
+            <ol>
+              <li>Kopieer pattern 1 naar pattern 2 met <strong>copy/paste</strong>.</li>
+              <li>Haal in de nieuwe pattern weg wat je al genoeg hebt gehoord.</li>
+              <li>Voeg pas daarna nieuwe lagen toe: zo blijft de opbouw logisch.</li>
+              <li>Denk in DJ-termen: intro, opbouw, break, drop, refrein.</li>
+            </ol>
+            <div class="callout exercise">🎯 <strong>Oefening:</strong> Maak 4 patterns van dezelfde basis. Pattern 1 kaal, pattern 2 met vocalvariatie, pattern 3 met snare/snap, pattern 4 met extra stempel.</div>
+          </div>
+        </article>
+
+        <article class="module" data-order="6" data-tags="performance">
+          <div class="module-index"><span>Module</span><b>06</b></div>
+          <div>
+            <div class="module-meta"><span class="module-tag" data-tone="performance"><span class="color-dot" aria-hidden="true"></span>Live</span></div>
+            <h3>Mixer, volume en dode stukken repareren</h3>
+            <p>Als de track begint te werken, hoor je pas waar volumes botsen en waar overgangen stilvallen.</p>
+            <ol>
+              <li>Open het <strong>mixer-scherm</strong> om pads onderling in balans te brengen.</li>
+              <li>Zet te harde samples lager voordat ze de groove overheersen.</li>
+              <li>Zoek dode stukjes tussen overgangen en vul ze met een stempel, pad of korte slice.</li>
+              <li>Gebruik mutes om onderdelen tijdelijk uit te zetten terwijl je luistert.</li>
+            </ol>
+            <div class="callout warning">⚠️ <strong>Less is more:</strong> Dave zegt het expliciet: voeg niet te veel toe. Een goede pad of snare kan genoeg zijn.</div>
+          </div>
+        </article>
+
+        <article class="module" data-order="7" data-tags="performance patterns">
+          <div class="module-index"><span>Module</span><b>07</b></div>
+          <div>
+            <div class="module-meta">
+              <span class="module-tag" data-tone="performance"><span class="color-dot" aria-hidden="true"></span>Live</span>
+              <span class="module-tag" data-tone="patterns"><span class="color-dot" aria-hidden="true"></span>Patterns</span>
+            </div>
+            <h3>Break, bassline en tempo-test</h3>
+            <p>Laat de remix ademen door een break te maken en test daarna of hij op een feesttempo blijft werken.</p>
+            <ol>
+              <li>Kopieer een gevulde pattern naar een nieuwe plek, bijvoorbeeld pattern 8 of 9.</li>
+              <li>Maak een <strong>break</strong> door de bassen eruit te halen.</li>
+              <li>Breng daarna de herkenbare hook of groove weer terug.</li>
+              <li>Test de track op <strong>104/105 BPM</strong> en daarna op <strong>128 BPM</strong> om te horen welke versie sterker voelt.</li>
+            </ol>
+            <div class="callout exercise">🎯 <strong>Eindopdracht sessie 1:</strong> Bouw een remixschets met minimaal 8 patterns: intro, opbouw, extra drumlaag, hoofdmoment, variatie, break, return en tempo-test.</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="arrangement">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Arrangement map</div>
+          <h2>Van pattern naar live-remix</h2>
+        </div>
+        <p class="section-note">
+          Gebruik deze kaart als praktisch bouwplan voor een track van ongeveer drie minuten.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="mix-map" aria-label="Pattern arrangement">
+          <div class="mix-step active"><strong>01 Intro</strong><span>Kick + eerste stempel</span></div>
+          <div class="mix-step"><strong>02 Variatie</strong><span>Andere slice of stilte</span></div>
+          <div class="mix-step active"><strong>03 Drums</strong><span>Snare / snap erbij</span></div>
+          <div class="mix-step active"><strong>04 Hook</strong><span>Catchy sample terug</span></div>
+          <div class="mix-step"><strong>05 Fill</strong><span>Extra geluid of pad</span></div>
+          <div class="mix-step"><strong>06 Groove</strong><span>Meer body, minder droog</span></div>
+          <div class="mix-step break"><strong>07 Break</strong><span>Bass eruit</span></div>
+          <div class="mix-step active"><strong>08 Return</strong><span>Hook + beat terug</span></div>
+        </div>
+        <div class="callout">
+          💡 <strong>Sturing:</strong> De DJS-1000 gaat niet vanzelf naar de volgende pattern. Jij bestuurt de volgorde live, dus oefen ook het moment waarop je wisselt.
+        </div>
+      </div>
+    </section>
+
+    <section id="rechten">
+      <div class="legal">
+        <aside class="legal-badge">
+          <div class="big">⚖️</div>
+          <div>
+            <div class="section-kicker">Belangrijk</div>
+            <h2>Rechten & samples</h2>
+          </div>
+        </aside>
+        <article class="card">
+          <ul class="dense-list">
+            <li><span class="icon">🎧</span><span>Dave kiest bewust voor <strong>kleine stukjes</strong> en bouwt er een eigen beat onder vanwege copyright.</span></li>
+            <li><span class="icon">📦</span><span>Gebruik je producer sample packs, check dan de licentie van het pack voordat je publiceert.</span></li>
+            <li><span class="icon">🚦</span><span>Voor commercieel releasen van herkenbare samples heb je clearance of toestemming nodig.</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="checklist">
+      <div class="checklist-wrap">
+        <div class="section-kicker">Launch control</div>
+        <h2>✅ Sessie 1 checklist</h2>
+        <div class="checklist">
+          <label class="check-item"><input type="checkbox"> DJS-1000 aangesloten op mixer/CDJ of line-in bron</label>
+          <label class="check-item"><input type="checkbox"> Nieuw project gemaakt en BPM gekozen</label>
+          <label class="check-item"><input type="checkbox"> 4-tellen sample opgenomen met genoeg input gain</label>
+          <label class="check-item"><input type="checkbox"> Sample in sample mode strak op de grid gezet</label>
+          <label class="check-item"><input type="checkbox"> Opgenomen samples opgeslagen op USB</label>
+          <label class="check-item"><input type="checkbox"> Kick, snare/snap en extra stempel toegevoegd</label>
+          <label class="check-item"><input type="checkbox"> Patterns gekopieerd en per pattern gevarieerd</label>
+          <label class="check-item"><input type="checkbox"> Mixer gebruikt om volumes te balanceren</label>
+          <label class="check-item"><input type="checkbox"> Break gemaakt door bass of drums weg te halen</label>
+          <label class="check-item"><input type="checkbox"> Remix getest op 104/105 BPM en sneller feesttempo</label>
+        </div>
+        <div class="timepath">
+          <strong>Tijdpad:</strong> Deze sessie draait niet om perfect produceren, maar om snel live bouwen. Binnen drie kwartier moet je een bruikbare remixschets kunnen maken die je daarna verder kunt verfijnen.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Sessie 1 · sample opnemen · grid editen · patterns kopiëren · live remixen met de Pioneer DJS-1000.
+  </footer>
+
+  <script>
+    const moduleList = document.querySelector("#module-list");
+    const modules = Array.from(document.querySelectorAll(".module[data-order]"));
+    const viewButtons = Array.from(document.querySelectorAll(".view-btn"));
+    const sortSelect = document.querySelector("#module-sort");
+
+    function renderModules() {
+      const direction = sortSelect.value === "desc" ? -1 : 1;
+
+      modules
+        .sort((a, b) => (Number(a.dataset.order) - Number(b.dataset.order)) * direction)
+        .forEach((module) => {
+          moduleList.appendChild(module);
+        });
+    }
+
+    viewButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const isGrid = button.dataset.view === "grid";
+        viewButtons.forEach((item) => item.classList.toggle("active", item === button));
+        moduleList.classList.toggle("grid-view", isGrid);
+      });
+    });
+
+    sortSelect.addEventListener("change", renderModules);
+  </script>
+</body>
+</html>
