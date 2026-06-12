@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Leer Remixen met Dave – Sessie 1</title>
+<title>Sessie 1 — Basis Remix mei 2020 | Dave Hipke DS-1000</title>
 <style>
   :root {
     --bg: #f8f7f4;
@@ -29,6 +29,16 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+  .topnav { background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+  .topnav-inner { max-width: 1000px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; gap: 1rem; height: 48px; }
+  .topnav-logo { font-size: 13px; font-weight: 700; color: var(--text); text-decoration: none; white-space: nowrap; }
+  .topnav-logo span { color: var(--accent); }
+  .topnav-links { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+  .topnav-links::-webkit-scrollbar { display: none; }
+  .topnav-link { font-size: 12px; padding: 5px 10px; border-radius: 6px; color: var(--muted); text-decoration: none; white-space: nowrap; }
+  .topnav-link:hover { color: var(--text); background: var(--bg); }
+  .topnav-link.on { color: var(--accent); background: var(--accent-light); }
 
   .header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 2rem; }
   .header-inner { max-width: 1000px; margin: 0 auto; }
@@ -129,14 +139,28 @@
 </head>
 <body>
 
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a class="topnav-logo" href="index.html">🎛️ DJ <span>Course</span></a>
+    <div class="topnav-links">
+      <a class="topnav-link" href="index.html">Home</a>
+      <a class="topnav-link" href="cursus.html">Volledige cursus</a>
+      <a class="topnav-link on" href="sessie1.html">Sessie 1 — mei '20</a>
+      <a class="topnav-link" href="sessie2.html">Sessie 2 — jun '20</a>
+      <a class="topnav-link" href="especial2021.html">e-Special — mei '21</a>
+      <a class="topnav-link" href="kerst.html">Kerst Remix — dec '20</a>
+    </div>
+  </div>
+</nav>
+
 <div class="header">
   <div class="header-inner">
     <div class="header-tags">
       <span class="tag tag-device">Pioneer DJ DS-1000</span>
-      <span class="tag tag-video">Sessie 1</span>
+      <span class="tag tag-video">Sessie 1 — mei 2020</span>
       <span class="tag tag-level">Beginner</span>
     </div>
-    <h1>Leer Remixen met Dave – Sessie 1</h1>
+    <h1>Basis Remix maken met de DS-1000 — Sessie 1</h1>
     <p class="subtitle">Eerste live sessie van Dave Hipke: van een leeg project naar een complete remix, stap voor stap uitgelegd vanuit de praktijk.</p>
     <div class="video-sources">
       <a class="video-chip" href="https://www.youtube.com/watch?v=xbZ5Dkp-FUo" target="_blank"><span class="dot"></span>Sessie 1 – Leer Remixen met Dave</a>
