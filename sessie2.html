@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessie 2 – Hardstyle & CDJ | DS-1000 Cursus</title>
+<style>
+  :root { --bg:#f8f7f4;--surface:#fff;--border:#e5e2db;--text:#1a1917;--muted:#6b6860;--accent:#2563eb; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+  nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+  .nav-inner{max-width:960px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:1.5rem;height:52px}
+  .nav-logo{font-size:14px;font-weight:700;color:var(--text);text-decoration:none}
+  .nav-logo span{color:var(--accent)}
+  .nav-links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-link{font-size:12px;padding:5px 10px;border-radius:6px;color:var(--muted);text-decoration:none;white-space:nowrap}
+  .nav-link:hover{color:var(--text);background:var(--bg)}
+  .nav-link.on{color:var(--accent);background:#eff6ff}
+  .hdr{max-width:960px;margin:0 auto;padding:2rem 1.5rem 1.25rem}
+  .tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:.6rem}
+  .tag{font-size:10px;font-weight:600;padding:2px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.04em}
+  .t1{background:#fff7ed;color:#c2410c}.t2{background:#fef3c7;color:#92400e}.t3{background:#fdf2f8;color:#9d174d}
+  h1{font-size:22px;font-weight:700;margin-bottom:.3rem}
+  .sub{color:var(--muted);font-size:14px;margin-bottom:.9rem}
+  .vlink{font-size:12px;padding:5px 12px;border-radius:6px;background:var(--bg);border:1px solid var(--border);color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+  .vlink:hover{color:var(--accent)}
+  .dot{width:5px;height:5px;border-radius:50%;background:#ef4444;flex-shrink:0}
+  .layout{max-width:960px;margin:0 auto;padding:1.25rem 1.5rem 4rem;display:grid;grid-template-columns:185px 1fr;gap:1.5rem;align-items:start}
+  .sidenav{position:sticky;top:64px;background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .snl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);padding:.7rem 1rem .3rem}
+  .ni{display:flex;align-items:center;gap:8px;padding:.5rem 1rem;cursor:pointer;border-left:3px solid transparent;font-size:12px;color:var(--muted);transition:all .12s}
+  .ni:hover{background:var(--bg);color:var(--text)}
+  .ni.on{background:#eff6ff;color:#2563eb;border-left-color:#2563eb;font-weight:600}
+  .nn{width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;background:var(--bg);flex-shrink:0}
+  .ni.on .nn{background:#2563eb;color:#fff}
+  .content{display:flex;flex-direction:column;gap:12px}
+  .mod{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+  .mh{padding:.9rem 1.2rem;border-bottom:1px solid var(--border);display:flex;gap:.85rem;align-items:flex-start}
+  .mi{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+  .ml{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.1rem}
+  .mt{font-size:14px;font-weight:700}
+  .ms{font-size:11px;color:var(--muted);margin-top:.1rem}
+  .steps{padding:.2rem 0}
+  .st{display:grid;grid-template-columns:40px 1fr;padding:.6rem 1.2rem;border-bottom:1px solid var(--border)}
+  .st:last-child{border-bottom:none}
+  .sn{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px}
+  .stl{font-size:12px;font-weight:700;margin-bottom:.15rem}
+  .std{font-size:12px;color:var(--muted);line-height:1.65}
+  .std strong{color:var(--text);font-weight:600}
+  .tip{font-size:11px;margin-top:.4rem;padding:.38rem .65rem;border-radius:5px;border-left:2px solid;line-height:1.6}
+  .tw{background:#fffbeb;border-color:#d97706;color:#92400e}
+  .ti{background:#eff6ff;border-color:#3b82f6;color:#1e40af}
+  .tg{background:#f0fdf4;border-color:#16a34a;color:#166534}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">🎛️ DJ <span>Course</span></a>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="cursus.html">Alle modules</a>
+      <a class="nav-link" href="sessie1.html">Sessie 1</a>
+      <a class="nav-link on" href="sessie2.html">Sessie 2</a>
+      <a class="nav-link" href="especial2021.html">e-Special 2021</a>
+      <a class="nav-link" href="kerst.html">Kerst remix</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hdr">
+  <div class="tags">
+    <span class="tag t1">DS-1000</span>
+    <span class="tag t2">Sessie 2 — Deel 2</span>
+    <span class="tag t3">Hardstyle + CDJ</span>
+  </div>
+  <h1>Hardstyle maken &amp; live mixen met de DS-1000</h1>
+  <p class="sub">Volledig transcript verwerkt — van hardstyle kick met distortion tot live CDJ-combinatie via ProLink</p>
+  <a class="vlink" href="https://www.youtube.com/watch?v=5mlEb2lfZ7w" target="_blank"><span class="dot"></span>Leer Remixen met Dave – Deel 2 (Bax Music) · 60 min</a>
+</div>
+
+<div class="layout">
+  <nav class="sidenav">
+    <div class="snl">7 Modules</div>
+    <div class="ni on" onclick="go(1,this)"><span class="nn">1</span>DS-1000 structuur</div>
+    <div class="ni" onclick="go(2,this)"><span class="nn">2</span>Hardstyle kick</div>
+    <div class="ni" onclick="go(3,this)"><span class="nn">3</span>Samples & remix</div>
+    <div class="ni" onclick="go(4,this)"><span class="nn">4</span>Arrangement</div>
+    <div class="ni" onclick="go(5,this)"><span class="nn">5</span>Tempo & sync</div>
+    <div class="ni" onclick="go(6,this)"><span class="nn">6</span>CDJ combineren</div>
+    <div class="ni" onclick="go(7,this)"><span class="nn">7</span>Live set prep</div>
+  </nav>
+
+  <div class="content">
+
+    <div class="mod" id="M1">
+      <div class="mh"><div class="mi" style="background:#eff6ff">🎛️</div><div><div class="ml" style="color:#2563eb">Module 1</div><div class="mt">De structuur van de DS-1000 begrijpen</div><div class="ms">Scenes, patterns, sample packs</div></div></div>
+      <div class="steps">
+        <div class="st"><div><div class="sn" style="background:#eff6ff;color:#1d4ed8">1</div></div><div><div class="stl">Scène kiezen bovenin</div><div class="std">Bovenin het apparaat kies je een <strong>scène</strong> — je werkomgeving voor één track of stijl. Maak een nieuwe scène aan voor je hardstyle project en geef die een herkenbare naam.</div></div></div>
+        <div class="st"><div><div class="sn" style="background:#eff6ff;color:#1d4ed8">2</div></div><div><div class="stl">Patterns (pads) begrijpen</div><div class="std">Binnen elke scène werk je met <strong>16 patterns</strong> — de pads onderaan. Elk pattern kan gevuld worden met eigen geluiden: kick, clap, samples, melodie. Elke scène kan 16 patterns bevatten.</div></div></div>
+        <div class="st"><div><div class="sn" style="background:#eff6ff;color:#1d4ed8">3</div></div><div><div class="stl">5 bouwstenen bepalen</div><div class="std">Dave kiest 5 bouwstenen voor zijn hardstyle remix: <strong>kick, clap, herkenbaar sample-fragment, bassline, en een FX-element</strong>. Bepaal je bouwstenen vóór je gaat programmeren.</div></div></div>
+        <div class="st"><div><div class="sn" style="background:#eff6ff;color:#1d4ed8">4</div></div><div><div class="stl">Sample packs laden op USB</div><div class="std">Zet sample packs op een <strong>USB-stick</strong> en steek die in de DS-1000. Externe packs (Frontliner, Cashmere Pack) geven veel meer hardstyle-karakter dan de ingebouwde factory samples.<div class="tip ti">💡 Frontliner's hardstyle pack bevat geweldige kicks en FX-elementen — vraag de link via DM.</div></div></div></div>
+        <div class="st"><div><div class="sn" style="background:#eff6ff;color:#1d4ed8">5</div></div><div><div class="stl">Pattern lengte kiezen</div><div class="std">Elk pattern kan <strong>16, 32 of 64 bars</strong> lang zijn. Met 16 patterns × 64 bars heb je ruim 3 minuten. Intro = 16 bars, drop = 32–64 bars.</div></div></div>
+      </div>
+    </div>
+
+    <div class="mod" id="M2" style="display:none">
+      <div class="mh"><div class="mi" style="background:#fff7ed">🥁</div><div><div class="ml" style="color:#c2410c">Module 2</div><div class="mt">Een hardstyle kick bouwen</div><div class="ms">Distortion, clap, BPM 150</div></div></div>
+      <div class="steps">
+        <div class="st"><div><div class="sn" style="background:#fff7ed;color:#9a3412">1</div></div><div><div class="stl">Kick vinden in je database</div><div class="std">Zoek in je sample pack naar een zware, punchy kick. Voor hardstyle wil je een kick met genoeg attack en een duidelijke staart. Neem de tijd — dit is het fundament van je hele remix.</div></div></div>
+        <div class="st"><div><div class="sn" style="background:#fff7ed;color:#9a3412">2</div></div><div><div class="stl">Distortion op de kick zetten</div><div class="std">Ga naar de FX-instellingen van de kick-sample en zet <strong>distortion</strong> aan. Dit geeft de typische hardstyle-boost. Experimenteer met de intensiteit — te veel klinkt rauw, te weinig klinkt slap.<div class="tg tip">✅ Dave: "Als je produceert ben je continu bezig de juiste toon te vinden."</div></div></div></div>
+        <div class="st"><div><div class="sn" style="background:#fff7ed;color:#9a3412">3</div></div><div><div class="stl">Kick programmeren in de onderste rij</div><div class="std">Zet de kick op de <strong>onderste rij</strong> van het pattern op elke tel. Dit is de basis waarop alle andere elementen komen.</div></div></div>
+        <div class="st"><div><div class="sn" style="background:#fff7ed;color:#9a3412">4</div></div><div><div class="stl">Clap toevoegen voor impact</div><div class="std">Voeg een <strong>clap</strong> toe naast de kick voor slag en energie. Test met verschillende clap-samples totdat je de combinatie vindt die klopt.</div></div></div>
+        <div class="st"><div><div class="sn" style="background:#fff7ed;color:#9a3412">5</div></div><div><div class="stl">BPM instellen op 150</div><div class="std">Stel het tempo in op <strong>150 BPM</strong>. Dave testte zijn beat eerst op 130 BPM — klinkt meteen slapper. Op het juiste hardstyle-tempo klinkt exact dezelfde beat totaal anders en veel krachtiger.<div class="tip tw">⚠️ Stel BPM in VÓÓR je patterns programmeert — later wijzigen zonder Master Tempo klinkt scheef.</div></div></div></div>
+      </div>
+    </div>
+
+    <div class="mod" id="M3" style="display:none">
+      <div class="mh"><div class="mi" style="background:#f0fdfa">🎵</div><div><div class="ml" style="color:#0f766e">Module 3</div><div class="mt">Samples zoeken, lenen en opnemen</div><div class="ms">Database, CDJ, opname-techniek</div></div></div>
+      <div class="steps">
+        <div class="st"><div><div class="sn" style="background:#f0fdfa;color:#0f766e">1</div></div><div><div class="stl">Database doorzoeken</div><div class="std">Ga door je muziekbibliotheek op zoek naar tracks om te remixen. Kies een herkenbaar stukje — een vocal snippet, melodielijn of breakdown — dat past bij het gevoel dat je wil bereiken.</div></div></div>
+        <div class="st"><div><div class="sn" style="background:#f0fdfa;color:#0f766e">2</div></div><div><div class="stl">4 tellen lenen van een track</div><div class="std">Leen precies <strong>4 tellen</strong> van een bestaande plaat. Druk op record, laat die 4 tellen afspelen, stop. Je hebt nu een bruikbaar fragment zonder de hele track te gebruiken.</div></div></div>
+        <div class="st"><div><div class="sn" style="background:#f0fdfa;color:#0f766e">3</div></div><div><div class="stl">Slicen: het juiste stukje pakken</div><div class="std">Gebruik <strong>slicen (sluizen)</strong> om een specifiek begin- en eindpunt in te stellen. Zo gebruik je alleen de vocal-hit, de melodielijn, of het ritme-element dat je nodig hebt.</div></div></div>
+        <div class="st"><div><div class="sn" style="background:#f0fdfa;color:#0f766e">4</div></div><div><div class="stl">One-shots vs. loops</div><div class="std">Gebruik bij voorkeur <strong>one-shots</strong> — eenvoudiger en cleaner bij live gebruik. Dave: "One-shots zijn wel makkelijker." Loops vragen meer aandacht voor timing.</div></div></div>
+        <div class="st"><div><div class="sn" style="background:#f0fdfa;color:#0f766e">5</div></div><div><div class="stl">Opname under fly</div><div class="std">Samples opnemen <strong>terwijl de beat doordraait</strong> (under fly). Zet recording aan, laat de bron afspelen, en het wordt direct in het pattern opgenomen.<div class="tip tg">✅ "Je kan alles doen wat je met DAW-software kan — met kleine beperkingen."</div></div></div></div>
+      </div>
+    </div>
+
+    <div class="mod" id="M4" style="display:none">
+      <div class="mh"><div class="mi" style="background:#fef3c7">📐</div><div><div class="ml" style="color:#b45309">Module 4</div><div class="mt">Arrangement opbouwen met patterns</div><div class="ms">Intro → opbouw → drop → break</div></div></div>
+      <div class="steps">
+        <div class="st"><div><div class="sn" style="background:#fef3c7;color:#92400e">1</div></div><div><div class="stl">Structuur in je hoofd houden</div><div class="std"><strong>Intro → Opbouw → Refrein/drop → Break → Buildup → Refrein.</strong> Houd dit schema altijd vast bij het vullen van je patterns. Begin kaal, bouw op.</div></div></div>
+        <div class="st"><div><div class="sn" style="background:#fef3c7;color:#92400e">2</div></div><div><div class="stl">Pattern 1 — kale basis</div><div class="std">Begin met <strong>alleen kick + clap</strong>. Bewust kaal — mensen moeten de energie voelen opbouwen. Een te vol intro geeft geen ruimte voor groei.</div></div></div>
+        <div class="st"><div><div class="sn" style="background:#fef3c7;color:#92400e">3</div></div><div><div class="stl">Pattern kopiëren naar volgende</div><div class="std"><strong>Huidig pattern → Kopiëren → Volgend pattern → Plakken.</strong> Zo heb je een kopie als basis en voeg je nieuwe elementen toe zonder het vorige te verliezen.</div></div></div>
+        <div class="st"><div><div class="sn" style="background:#fef3c7;color:#92400e">4</div></div><div><div class="stl">Laag voor laag opbouwen</div><div class="std">Per pattern één of twee nieuwe elementen:<br>• P2: + snare of clap<br>• P3: + herkenbaar sample (vocal, melodie)<br>• P4: vol arrangement, alle elementen samen</div></div></div>
+        <div class="st"><div><div class="sn" style="background:#fef3c7;color:#92400e">5</div></div><div><div class="stl">Muten — chaos voorkomen</div><div class="std">Mute patterns die je nog niet wil horen. <strong>Niet-gemutete patterns klinken tegelijk.</strong><div class="tip tw">⚠️ Alles tegelijk aan = chaos. Bouw op door stap voor stap te activeren.</div></div></div></div>
+        <div class="st"><div><div class="sn" style="background:#fef3c7;color:#92400e">6</div></div><div><div class="stl">4-tel FX-verrassing</div><div class="std">Voeg een <strong>4-tel FX-element</strong> in als verrassing — sweep, vocal hit of effect-sample. Zet op een apart pattern zodat je het live kan triggeren op het perfecte moment.</div></div></div>
+      </div>
+    </div>
+
+    <div class="mod" id="M5" style="display:none">
+      <div class="mh"><div class="mi" style="background:#f5f3ff">🎚️</div><div><div class="ml" style="color:#7c3aed">Module 5</div><div class="mt">Tempo, sync en master tempo</div><div class="ms">BPM, dubbelklik-sync, beatgrid</div></div></div>
+      <div class="steps">
+        <div class="st"><div><div class="sn" style="background:#f5f3ff;color:#5b21b6">1</div></div><div><div class="stl">Master Tempo inschakelen</div><div class="std">Zet <strong>Master Tempo</strong> (Times Stretch) aan. Alle samples volgen automatisch mee bij BPM-wijzigingen. Zonder dit klinken samples scheef zodra je tempo verandert.</div></div></div>
+        <div class="st"><div><div class="sn" style="background:#f5f3ff;color:#5b21b6">2</div></div><div><div class="stl">Beatgrid controleren</div><div class="std">Zorg dat de beatgrid van je tracks correct staat (ingesteld via Rekordbox). Een verkeerde beatgrid maakt automatische sync onbetrouwbaar.</div></div></div>
+        <div class="st"><div><div class="sn" style="background:#f5f3ff;color:#5b21b6">3</div></div><div><div class="stl">Dubbelklik sync — de praktische truc</div><div class="std">CDJ op 150 BPM, DS-1000 op 139 BPM? <strong>Dubbelklik op de sync-knop.</strong> Beide apparaten landen op hetzelfde BPM zonder volledig te locken. Je behoudt je vrijheid maar speelt in hetzelfde tempo.<div class="tip ti">💡 Één klik = volledig gelocked. Dubbelklik = alleen BPM gelijk, geen harde beat-lock.</div></div></div></div>
+        <div class="st"><div><div class="sn" style="background:#f5f3ff;color:#5b21b6">4</div></div><div><div class="stl">Pitch veranderen onafhankelijk van tempo</div><div class="std">De DS-1000 laat je samples in <strong>toonhoogte veranderen</strong> onafhankelijk van het tempo. Zo past een vocal of melodie die net iets te hoog of laag is alsnog perfect in je remix.</div></div></div>
+      </div>
+    </div>
+
+    <div class="mod" id="M6" style="display:none">
+      <div class="mh"><div class="mi" style="background:#fae8ff">🔗</div><div><div class="ml" style="color:#a21caf">Module 6</div><div class="mt">Live mix: DS-1000 + CDJ combineren</div><div class="ms">USB ProLink, sync, crossfaden</div></div></div>
+      <div class="steps">
+        <div class="st"><div><div class="sn" style="background:#fae8ff;color:#86198f">1</div></div><div><div class="stl">Verbinding via USB / ProLink</div><div class="std">Sluit DS-1000 en CDJ/Nexus 2 aan op dezelfde mixer via USB (ProLink-kabel). Zet <strong>Link</strong> aan op beide apparaten. Ze communiceren nu en kunnen synchroon lopen.</div></div></div>
+        <div class="st"><div><div class="sn" style="background:#fae8ff;color:#86198f">2</div></div><div><div class="stl">CDJ-track als basis, DS-1000 voegt toe</div><div class="std">Draai een track op de CDJ. Voeg via de DS-1000 elementen toe <strong>bovenop de draaiende track</strong>: extra kick, vocal, FX. Het publiek ziet je bezig — veel meer showwaarde dan alleen play drukken.</div></div></div>
+        <div class="st"><div><div class="sn" style="background:#fae8ff;color:#86198f">3</div></div><div><div class="stl">BPM gelijktrekken</div><div class="std">CDJ op 150 BPM, DS-1000 op 139 BPM? Dubbelklik sync op DS-1000 → beide op 150. <strong>Controleer altijd dat beide apparaten op hetzelfde BPM staan</strong> vóór je ze samenvoegt.</div></div></div>
+        <div class="st"><div><div class="sn" style="background:#fae8ff;color:#86198f">4</div></div><div><div class="stl">Crossfaden naar DS-1000</div><div class="std">Heb je een compleet arrangement gebouwd? Fade de CDJ-track weg via de crossfader en laat de DS-1000 solo door. Je eigen productie bereikt het publiek live.</div></div></div>
+        <div class="st"><div><div class="sn" style="background:#fae8ff;color:#86198f">5</div></div><div><div class="stl">Genres combineren</div><div class="std">De DS-1000 maakt het mogelijk om <strong>hardstyle, tech house en dance te combineren</strong> in één set. Aparte scène per stijl — zolang het BPM klopt is alles mogelijk.</div></div></div>
+      </div>
+    </div>
+
+    <div class="mod" id="M7" style="display:none">
+      <div class="mh"><div class="mi" style="background:#f0fdf4">⭐</div><div><div class="ml" style="color:#15803d">Module 7</div><div class="mt">Voorbereiding voor een live set</div><div class="ms">Muting, volume, finger drumming</div></div></div>
+      <div class="steps">
+        <div class="st"><div><div class="sn" style="background:#dcfce7;color:#15803d">1</div></div><div><div class="stl">Patterns van tevoren programmeren</div><div class="std">Bereid je patterns thuis voor — net zoals je een playlist klaarzet in Rekordbox. Dave: "Als je het live gaat toepassen moet je wel bereid zijn."</div></div></div>
+        <div class="st"><div><div class="sn" style="background:#dcfce7;color:#15803d">2</div></div><div><div class="stl">Volumebalans regelen</div><div class="std">Stel per sample het volume in via de mixer-view. Externe sample packs zijn soms luider dan je opnames. <strong>Alles uit het rood</strong> vóór je live gaat.</div></div></div>
+        <div class="st"><div><div class="sn" style="background:#dcfce7;color:#15803d">3</div></div><div><div class="stl">Tracks labelen in Rekordbox</div><div class="std">Gebruik labels in Rekordbox ("hardstyle", "tech house") zodat je tijdens de set snel de juiste track terugvindt om te samplen of te mixen.</div></div></div>
+        <div class="st"><div><div class="sn" style="background:#dcfce7;color:#15803d">4</div></div><div><div class="stl">Finger drumming oefenen</div><div class="std">Pads combineren terwijl de beat loopt is een vaardigheid. <strong>Oefen thuis</strong> totdat het intuïtief gaat. Meer oefening = meer showwaarde live.</div></div></div>
+        <div class="st"><div><div class="sn" style="background:#dcfce7;color:#15803d">5</div></div><div><div class="stl">Binnen 10 weken je eerste live remix</div><div class="std">De DS-1000 is sneller te leren dan een DAW door de gefocuste knoppen en directe workflow. <strong>Binnen 10 weken kun je een eigen remix live spelen.</strong><div class="tip tg">✅ "Stuur mij een sample pack en we maken er online een remix van."</div></div></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function go(n,el){
+  for(var i=1;i<=7;i++){var m=document.getElementById('M'+i);if(m)m.style.display=i===n?'':'none';}
+  document.querySelectorAll('.ni').forEach(function(x){x.classList.remove('on');});
+  el.classList.add('on');
+}
+</script>
+</body>
+</html>

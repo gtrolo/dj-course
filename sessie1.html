@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leer Remixen met Dave – Sessie 1</title>
+<style>
+  :root {
+    --bg: #f8f7f4;
+    --surface: #ffffff;
+    --border: #e5e2db;
+    --text: #1a1917;
+    --muted: #6b6860;
+    --accent: #2563eb;
+    --accent-light: #eff6ff;
+    --accent-border: #bfdbfe;
+    --amber: #d97706;
+    --amber-light: #fffbeb;
+    --teal: #0f766e;
+    --teal-light: #f0fdfa;
+    --purple: #7c3aed;
+    --purple-light: #f5f3ff;
+    --coral: #c2410c;
+    --coral-light: #fff7ed;
+    --green: #15803d;
+    --green-light: #f0fdf4;
+    --pink: #be185d;
+    --pink-light: #fdf2f8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+  .header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 2rem; }
+  .header-inner { max-width: 1000px; margin: 0 auto; }
+  .header-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1rem; }
+  .tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: .04em; }
+  .tag-device { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+  .tag-video { background: #f5f3ff; color: #5b21b6; border: 1px solid #ddd6fe; }
+  .tag-level { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+  h1 { font-size: 26px; font-weight: 700; margin-bottom: .5rem; }
+  .subtitle { color: var(--muted); font-size: 15px; max-width: 640px; }
+  .video-sources { margin-top: 1.25rem; display: flex; gap: 10px; flex-wrap: wrap; }
+  .video-chip { font-size: 12px; padding: 5px 12px; border-radius: 6px; background: var(--bg); border: 1px solid var(--border); color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+  .video-chip:hover { background: var(--accent-light); border-color: var(--accent-border); color: var(--accent); }
+  .video-chip .dot { width: 6px; height: 6px; border-radius: 50%; background: #ef4444; flex-shrink: 0; }
+
+  .layout { max-width: 1000px; margin: 0 auto; padding: 2rem; display: grid; grid-template-columns: 220px 1fr; gap: 2rem; align-items: start; }
+
+  .nav { position: sticky; top: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .nav-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: .85rem 1rem .4rem; }
+  .nav-item { display: flex; align-items: center; gap: 10px; padding: .6rem 1rem; cursor: pointer; border-left: 3px solid transparent; transition: all .15s; font-size: 13px; color: var(--muted); text-decoration: none; }
+  .nav-item:hover { background: var(--bg); color: var(--text); }
+  .nav-item.active { background: var(--accent-light); color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+  .nav-num { font-size: 11px; font-weight: 700; width: 18px; height: 18px; border-radius: 50%; background: var(--bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .nav-item.active .nav-num { background: var(--accent); color: white; }
+
+  .content { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .mod { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .mh { padding: 1.1rem 1.4rem; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 1rem; }
+  .mi { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .mm { flex: 1; }
+  .ml { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .15rem; }
+  .mt { font-size: 16px; font-weight: 700; }
+  .ms { font-size: 11px; margin-top: .2rem; color: var(--muted); }
+
+  .steps { padding: .5rem 0; }
+  .st { display: grid; grid-template-columns: 44px 1fr; padding: .7rem 1.4rem; border-bottom: 1px solid var(--border); }
+  .st:last-child { border-bottom: none; }
+  .sn-wrap { display: flex; align-items: flex-start; padding-top: 2px; }
+  .sn { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+  .sb {}
+  .stl { font-size: 13px; font-weight: 700; margin-bottom: .2rem; }
+  .std { font-size: 13px; color: var(--muted); line-height: 1.65; }
+  .std strong { color: var(--text); font-weight: 600; }
+  .tip { font-size: 12px; margin-top: .5rem; padding: .5rem .75rem; border-radius: 6px; border-left: 3px solid; line-height: 1.6; }
+  .tw { background: var(--amber-light); border-color: var(--amber); color: #92400e; }
+  .ti { background: var(--accent-light); border-color: var(--accent); color: #1e40af; }
+  .tg { background: var(--green-light); border-color: var(--green); color: #166534; }
+
+  .callout { padding: 1rem 1.4rem; background: var(--bg); border-top: 1px solid var(--border); }
+  .cls { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: .5rem; }
+  .cg { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; }
+  .ci { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: .6rem .85rem; font-size: 12px; }
+  .ci strong { display: block; font-weight: 700; margin-bottom: .15rem; }
+  .ci span { color: var(--muted); }
+
+  /* Module accent colours */
+  .m1 .mi { background: #eff6ff; }
+  .m1 .ml { color: #2563eb; }
+  .m1 .sn { background: #eff6ff; color: #1d4ed8; }
+
+  .m2 .mi { background: var(--amber-light); }
+  .m2 .ml { color: var(--amber); }
+  .m2 .sn { background: var(--amber-light); color: #92400e; }
+
+  .m3 .mi { background: var(--teal-light); }
+  .m3 .ml { color: var(--teal); }
+  .m3 .sn { background: var(--teal-light); color: #0f766e; }
+
+  .m4 .mi { background: var(--coral-light); }
+  .m4 .ml { color: var(--coral); }
+  .m4 .sn { background: var(--coral-light); color: #9a3412; }
+
+  .m5 .mi { background: var(--purple-light); }
+  .m5 .ml { color: var(--purple); }
+  .m5 .sn { background: var(--purple-light); color: #5b21b6; }
+
+  .m6 .mi { background: var(--pink-light); }
+  .m6 .ml { color: var(--pink); }
+  .m6 .sn { background: var(--pink-light); color: #9d174d; }
+
+  .m7 .mi { background: var(--green-light); }
+  .m7 .ml { color: var(--green); }
+  .m7 .sn { background: var(--green-light); color: #166534; }
+
+  .m8 .mi { background: #fef3c7; }
+  .m8 .ml { color: #b45309; }
+  .m8 .sn { background: #fef3c7; color: #92400e; }
+
+  @media (max-width: 700px) {
+    .layout { grid-template-columns: 1fr; }
+    .nav { position: static; display: flex; flex-wrap: wrap; gap: 4px; padding: .5rem; }
+    .nav-title { display: none; }
+    .nav-item { border-radius: 6px; border-left: none; padding: .4rem .7rem; font-size: 12px; }
+    .nav-item.active { border-left: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-tags">
+      <span class="tag tag-device">Pioneer DJ DS-1000</span>
+      <span class="tag tag-video">Sessie 1</span>
+      <span class="tag tag-level">Beginner</span>
+    </div>
+    <h1>Leer Remixen met Dave – Sessie 1</h1>
+    <p class="subtitle">Eerste live sessie van Dave Hipke: van een leeg project naar een complete remix, stap voor stap uitgelegd vanuit de praktijk.</p>
+    <div class="video-sources">
+      <a class="video-chip" href="https://www.youtube.com/watch?v=xbZ5Dkp-FUo" target="_blank"><span class="dot"></span>Sessie 1 – Leer Remixen met Dave</a>
+    </div>
+  </div>
+</div>
+
+<div class="layout">
+  <nav class="nav">
+    <div class="nav-title">Modules</div>
+    <a class="nav-item active" href="#m1"><span class="nav-num">1</span>Setup & aansluiting</a>
+    <a class="nav-item" href="#m2"><span class="nav-num">2</span>Project aanmaken</a>
+    <a class="nav-item" href="#m3"><span class="nav-num">3</span>Acapella samplen</a>
+    <a class="nav-item" href="#m4"><span class="nav-num">4</span>Sample editen</a>
+    <a class="nav-item" href="#m5"><span class="nav-num">5</span>Ritme opbouwen</a>
+    <a class="nav-item" href="#m6"><span class="nav-num">6</span>Patterns & structuur</a>
+    <a class="nav-item" href="#m7"><span class="nav-num">7</span>Tempo & Time Stretch</a>
+    <a class="nav-item" href="#m8"><span class="nav-num">8</span>Remix afwerken</a>
+  </nav>
+
+  <div class="content">
+
+    <!-- MODULE 1 -->
+    <div class="mod m1" id="m1">
+      <div class="mh">
+        <div class="mi">🎛️</div>
+        <div class="mm">
+          <div class="ml">Module 1</div>
+          <div class="mt">Setup & aansluiting</div>
+          <div class="ms">Sessie 1 – Leer Remixen met Dave</div>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">1</div></div>
+          <div class="sb">
+            <div class="stl">DS-1000 aansluiten op de CDJ/mixer</div>
+            <div class="std">Dave gebruikt een <strong>Nexus 2Z</strong> aangesloten op de DS-1000. Je hebt de juiste kabels nodig om het audiosignaal van externe spelers (CDJ, RX, TP-1000) <strong>als input</strong> aan te sluiten. Via de line-in op de achterkant kun je dan geluid van die speler samplen in de DS-1000.</div>
+            <div class="tip ti">Je kunt de DS-1000 ook <strong>stand-alone</strong> gebruiken zonder externe speler — er is geen CDJ verplicht.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">2</div></div>
+          <div class="sb">
+            <div class="stl">Wat zijn de 16 pads?</div>
+            <div class="std">De DS-1000 heeft <strong>16 pads</strong> die je kunt vullen met geluiden: een kick, bas, clap, snare en andere samples. Elk pad kan een eigen geluid bevatten dat je live kunt triggeren.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">3</div></div>
+          <div class="sb">
+            <div class="stl">USB-stick altijd insteken</div>
+            <div class="std">Steek <strong>vóór je begint</strong> een USB-stick in. Alle samples die je opneemt kun je op de stick opslaan. Als je dat vergeet en twee uur hebt gewerkt, ben je alles kwijt als het apparaat uitgaat.</div>
+            <div class="tip tw">Dave waarschuwt: hij heeft dit zelf meegemaakt. Sla je samples altijd tussentijds op.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 2 -->
+    <div class="mod m2" id="m2">
+      <div class="mh">
+        <div class="mi">🆕</div>
+        <div class="mm">
+          <div class="ml">Module 2</div>
+          <div class="mt">Project aanmaken & tempo kiezen</div>
+          <div class="ms">Sessie 1 – Leer Remixen met Dave</div>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">1</div></div>
+          <div class="sb">
+            <div class="stl">Nieuw project starten</div>
+            <div class="std">Ga naar <strong>Nieuw project</strong>. Geef het project nog geen naam — Dave adviseert dit pas te doen als je weet wat er uit gaat komen.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">2</div></div>
+          <div class="sb">
+            <div class="stl">BPM instellen op 100</div>
+            <div class="std">Klik op <strong>Beats Per Minute</strong> en stel het project in op <strong>100 BPM</strong>. Dit is een makkelijk startpunt: later kun je het tempo altijd verhogen (bijv. naar 104 of 128 BPM). In dit geval mikt Dave op een '90s-stijl house/pop vibe.</div>
+            <div class="tip ti">100 BPM is ideaal voor beginners: ruimte genoeg om geluiden te plaatsen, en later eenvoudig op te voeren.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">3</div></div>
+          <div class="sb">
+            <div class="stl">Muzikale achtergrond helpt</div>
+            <div class="std">Dave benadrukt dat je <strong>muzikaal tellen</strong> moet kennen: vier tellen per maat. Als je niet weet wat vier tellen zijn, is het lastig om een remix te structureren. Hij adviseert ook ervaring met productieprogramma's zoals Ableton of FL Studio te gebruiken als basis.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 3 -->
+    <div class="mod m3" id="m3">
+      <div class="mh">
+        <div class="mi">🎤</div>
+        <div class="mm">
+          <div class="ml">Module 3</div>
+          <div class="mt">Acapella samplen van een plaat</div>
+          <div class="ms">Sessie 1 – Leer Remixen met Dave</div>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">1</div></div>
+          <div class="sb">
+            <div class="stl">Geschikte plaat uitzoeken</div>
+            <div class="std">Luister naar platen en kies er een waarvan je zegt: "Die ga ik remixen." Dave zoekt een plaat met een herkenbaar stukje — in dit geval een <strong>'90s klassieker</strong> — waarvan hij een acapella-fragment (zang) pakt.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">2</div></div>
+          <div class="sb">
+            <div class="stl">Simpel opnemen in de DS-1000</div>
+            <div class="std">Druk op <strong>Sampling</strong>. Kies hoelang je wilt opnemen (bijv. 4 tellen). Zet de CDJ of externe speler aan en druk op record. De DS neemt het geluid in realtime op via de line-in.</div>
+            <div class="tip tw">Zorg dat het signaal <strong>niet te zacht</strong> binnenkomt. Verhoog de input-gain en/of de trim op je mengtafel zodat de sample voldoende level heeft.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">3</div></div>
+          <div class="sb">
+            <div class="stl">Sample op vier tellen instellen</div>
+            <div class="std">Stel de sampleduur in op <strong>vier tellen</strong> (één maat). Op deze manier loopt de sample precies in de maat en kun je hem herhalen in de sequencer zonder ritmische afwijking.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">4</div></div>
+          <div class="sb">
+            <div class="stl">Sample opslaan op USB</div>
+            <div class="std">Na het opnemen: ga naar <strong>Opslaan</strong> en schrijf de sample naar de USB-stick. Doe dit direct na elke opname.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 4 -->
+    <div class="mod m4" id="m4">
+      <div class="mh">
+        <div class="mi">✂️</div>
+        <div class="mm">
+          <div class="ml">Module 4</div>
+          <div class="mt">Sample editen via de touchscreen</div>
+          <div class="ms">Sessie 1 – Leer Remixen met Dave</div>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">1</div></div>
+          <div class="sb">
+            <div class="stl">Sample modus openen</div>
+            <div class="std">Zet de sample in <strong>Sample modus</strong> (edit). Je ziet de golfvorm op het touchscreen. Hier kun je beginpunt en eindpunt precies instellen door op het scherm te tikken of te slepen.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">2</div></div>
+          <div class="sb">
+            <div class="stl">Begin- en eindpunt bijsnijden</div>
+            <div class="std">Gebruik de touchscreen om het begin precies op de eerste beat te zetten en het einde exact op de laatste beat. Dit voorkomt klikgeluiden of stille stukken aan het begin en einde van de sample.</div>
+            <div class="tip tg">Als de sample <strong>precies op de grid</strong> staat (Dave: "ongelooflijk, hij zit precies op de grid!"), hoef je niets aan te passen en kun je direct doorwerken.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">3</div></div>
+          <div class="sb">
+            <div class="stl">Volume en compressie aanpassen</div>
+            <div class="std">Een rauwe sample klinkt vaak te zacht of te droog. Gebruik de <strong>input level</strong> en de <strong>trim op de mengtafel</strong> om het volume te corrigeren. Compressie en EQ pas je toe via de mixer of externe apparatuur.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 5 -->
+    <div class="mod m5" id="m5">
+      <div class="mh">
+        <div class="mi">🥁</div>
+        <div class="mm">
+          <div class="ml">Module 5</div>
+          <div class="mt">Ritme opbouwen: kick, snare & snap</div>
+          <div class="ms">Sessie 1 – Leer Remixen met Dave</div>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">1</div></div>
+          <div class="sb">
+            <div class="stl">Kick drum zoeken via Search</div>
+            <div class="std">Gebruik de <strong>zoekfunctie</strong> van de DS-1000 om een kick te vinden. Luister door de opties en kies er een die past bij het gewenste geluid. Dave gebruikt ook <strong>Cymatics sample packs</strong> (niet de standaard Pioneer DJ-samples).</div>
+            <div class="tip ti">De standaard meegeleverde samples van Pioneer DJ zijn prima als start, maar specifieke sample packs geven je eigen geluid.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">2</div></div>
+          <div class="sb">
+            <div class="stl">Kick plaatsen in de sequencer</div>
+            <div class="std">In de <strong>sequencer</strong> heb je 16 stappen per maat. Zet een kick op <strong>stap 1, 5, 9 en 13</strong> voor een standaard four-on-the-floor patroon. Druk de pads in om de stappen aan/uit te zetten.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">3</div></div>
+          <div class="sb">
+            <div class="stl">Snare toevoegen</div>
+            <div class="std">Zoek een snare die bij de stijl past. Dave probeert meerdere snares uit voor hij er één kiest — het uitzoeken van de juiste geluiden kost de meeste tijd. Plaats de snare op de "twee" en de "vier" (stap 5 en 13 in een 16-staps raster).</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">4</div></div>
+          <div class="sb">
+            <div class="stl">Snap als alternatief voor snare</div>
+            <div class="std">Een moderne optie is een <strong>snap</strong> (het kleine knipgeluid, denk aan "rhythm is a dancer"). Zoek een snap-geluid in de database en voeg dit toe aan het patroon naast of in plaats van de standaard snare.</div>
+            <div class="tip tg">"Less is more" — stop niet te veel geluiden in één patroon. Houd het ritme overzichtelijk.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">5</div></div>
+          <div class="sb">
+            <div class="stl">Externe ritme-sample lenen</div>
+            <div class="std">Je kunt ook een <strong>ritmeloop</strong> samplen van een andere plaat. Speel die plaat af via de CDJ, zoek het perfecte stukje, en neem het op als sample in de DS-1000 via de sampling-modus.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 6 -->
+    <div class="mod m6" id="m6">
+      <div class="mh">
+        <div class="mi">🗂️</div>
+        <div class="mm">
+          <div class="ml">Module 6</div>
+          <div class="mt">Patterns & arrangement opbouwen</div>
+          <div class="ms">Sessie 1 – Leer Remixen met Dave</div>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">1</div></div>
+          <div class="sb">
+            <div class="stl">De structuur: 16 patterns</div>
+            <div class="std">De DS-1000 heeft <strong>16 patterns</strong> per scène. Elk pattern is één bouwblok van je remix. Met 16 patterns × 16 stappen heb je genoeg ruimte voor een complete remix van 3–4 minuten. Denk: <strong>intro → opbouw → refrein → break → drop → refrein → outro</strong>.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">2</div></div>
+          <div class="sb">
+            <div class="stl">Pattern kopiëren</div>
+            <div class="std">Wil je een pattern uitbreiden? Ga naar het huidige pattern, kies <strong>Kopiëren</strong>, navigeer naar het volgende pattern-nummer en kies <strong>Plakken</strong>. Nu heb je een exacte kopie die je kunt aanpassen.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">3</div></div>
+          <div class="sb">
+            <div class="stl">Elementen toevoegen per pattern</div>
+            <div class="std">Begin met alleen een kick (pattern 1). Voeg in pattern 2 een snare toe. In pattern 3 voeg je de acapella-sample in. Zo bouw je geleidelijk op. In een <strong>break</strong> haal je de bas en kick weg en laat je alleen melodie of vocals over.</div>
+            <div class="tip ti">Bekijk de paarse voortgangsbalk onderaan — die toont welke patterns geactiveerd zijn en hoe de remix zich ontvouwt.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">4</div></div>
+          <div class="sb">
+            <div class="stl">Break maken</div>
+            <div class="std">Kopieer een patroon naar een nieuw slot en verwijder daarin de kick en bas. Laat alleen de melodie-elementen staan. Dit geeft je remix een <strong>break</strong> (rustpunt) voor de drop.</div>
+          </div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="cls">Remix-structuur</div>
+        <div class="cg">
+          <div class="ci"><strong>Pattern 1–2</strong><span>Intro – alleen kick</span></div>
+          <div class="ci"><strong>Pattern 3–4</strong><span>Opbouw – kick + snare</span></div>
+          <div class="ci"><strong>Pattern 5–6</strong><span>Refrein – volle beat + sample</span></div>
+          <div class="ci"><strong>Pattern 7–8</strong><span>Break – alleen melodie</span></div>
+          <div class="ci"><strong>Pattern 9–10</strong><span>Drop – alles terug</span></div>
+          <div class="ci"><strong>Pattern 11–16</strong><span>Variaties & outro</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 7 -->
+    <div class="mod m7" id="m7">
+      <div class="mh">
+        <div class="mi">⏱️</div>
+        <div class="mm">
+          <div class="ml">Module 7</div>
+          <div class="mt">Tempo & Time Stretch aanpassen</div>
+          <div class="ms">Sessie 1 – Leer Remixen met Dave</div>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">1</div></div>
+          <div class="sb">
+            <div class="stl">BPM van een externe sample controleren</div>
+            <div class="std">Als je een ritmeloop van een externe plaat wilt samplen, controleer dan eerst het <strong>BPM van die plaat</strong>. Zet de CDJ in CDM-modus en lees het display. Als je plaat op 104 BPM staat en je project op 100, moet je één van de twee aanpassen.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">2</div></div>
+          <div class="sb">
+            <div class="stl">Master Tempo / Time Stretch inschakelen</div>
+            <div class="std">De DS-1000 heeft een <strong>Time Stretch</strong>-functie. Hiermee kun je samples automatisch laten meelopen met het projecttempo. Zet dit aan zodat een sample die op 104 BPM is opgenomen, correct afspeelt op jouw project-BPM van 100.</div>
+            <div class="tip tg">Zonder Time Stretch klinkt de sample te snel of te langzaam. Zet Time Stretch altijd aan als je samples van externe platen gebruikt.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">3</div></div>
+          <div class="sb">
+            <div class="stl">Tempo verhogen voor feesteffect</div>
+            <div class="std">Wil je een snellere versie van je remix? Zet het projecttempo hoger, bijv. <strong>128 BPM</strong>. Door Time Stretch lopen alle samples automatisch mee. Je kunt zo snel vergelijken hoe je remix klinkt op verschillende tempos.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">4</div></div>
+          <div class="sb">
+            <div class="stl">Syncing van sample aan beat</div>
+            <div class="std">Gebruik de <strong>sync-knop</strong> om een opgenomen sample direct te koppelen aan het projecttempo. Dit voorkomt dat de sample net iets voor of achter de beat valt.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 8 -->
+    <div class="mod m8" id="m8">
+      <div class="mh">
+        <div class="mi">🎚️</div>
+        <div class="mm">
+          <div class="ml">Module 8</div>
+          <div class="mt">Remix afwerken & mixer gebruiken</div>
+          <div class="ms">Sessie 1 – Leer Remixen met Dave</div>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">1</div></div>
+          <div class="sb">
+            <div class="stl">Volumes balanceren via de mixer</div>
+            <div class="std">Sommige geluiden zijn te hard of te zacht. Gebruik de <strong>mixer</strong> om elk spoor apart in volume bij te stellen. Klik op het spoor en gebruik de volumeknop om het niveau aan te passen. Zorg dat niets in het rood staat.</div>
+            <div class="tip tw">Rode meters = clipping = vervorming. Draai terug tot alles in het groen of geel zit.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">2</div></div>
+          <div class="sb">
+            <div class="stl">Elementen individueel aan/uitzetten</div>
+            <div class="std">Tijdens het bouwen van een pattern kun je elementen tijdelijk uitzetten om te horen hoe de rest klinkt. Gebruik de <strong>mute-knop per pad</strong>. Dit helpt bij het identificeren van geluiden die niet lekker passen.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">3</div></div>
+          <div class="sb">
+            <div class="stl">Lege stukken (stiltes) repareren</div>
+            <div class="std">Loop alle patterns door en luister of er ongewenste <strong>stiltes</strong> of dode stukken zijn bij overgangen. Vul deze op met een extra element of pas het begin/eindpunt van het pattern aan.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">4</div></div>
+          <div class="sb">
+            <div class="stl">Finaal testen op verschillende BPM</div>
+            <div class="std">Luister de remix op meerdere tempos (100, 104, 128 BPM) om te beslissen welke versie je wilt meenemen naar je set. De DS-1000 past het tempo real-time aan zonder herkwaliteitsvermindering.</div>
+            <div class="tip tg">De remix die je maakt is direct inzetbaar in een live DJ-set: je weet het BPM, je kunt hem inzetten via de CDJ, en je weet de structuur.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /layout -->
+
+<script>
+  // Highlight active nav item on scroll
+  const items = document.querySelectorAll('.nav-item');
+  const modules = document.querySelectorAll('.mod');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    modules.forEach(m => { if (window.scrollY >= m.offsetTop - 120) current = m.id; });
+    items.forEach(i => {
+      i.classList.toggle('active', i.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+</body>
+</html>

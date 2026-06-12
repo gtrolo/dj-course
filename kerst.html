@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Kerst Remix – Dave Hipke DS-1000</title>
+<style>
+  :root {
+    --bg: #f8f7f4; --surface: #ffffff; --border: #e5e2db;
+    --text: #1a1917; --muted: #6b6860; --accent: #2563eb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  .hdr { background: var(--surface); border-bottom: 1px solid var(--border); padding: 1.25rem 1.5rem 1rem; }
+  .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: .6rem; }
+  .tag { font-size: 10px; font-weight: 600; padding: 2px 9px; border-radius: 20px; text-transform: uppercase; letter-spacing: .04em; }
+  .t1 { background: #fef3c7; color: #92400e; } .t2 { background: #f0fdfa; color: #0f766e; } .t3 { background: #fff7ed; color: #c2410c; }
+  h1 { font-size: 22px; font-weight: 700; margin-bottom: .4rem; }
+  .sub { color: var(--muted); font-size: 14px; margin-bottom: 1rem; }
+  .vlink { font-size: 12px; padding: 5px 12px; border-radius: 6px; background: var(--bg); border: 1px solid var(--border); color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+  .vlink:hover { color: #2563eb; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: #ef4444; flex-shrink: 0; }
+  .layout { max-width: 960px; margin: 0 auto; padding: 1.5rem; display: grid; grid-template-columns: 200px 1fr; gap: 1.5rem; align-items: start; }
+  .nav { position: sticky; top: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .nav-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: .75rem 1rem .35rem; }
+  .ni { display: flex; align-items: center; gap: 9px; padding: .55rem 1rem; cursor: pointer; border-left: 3px solid transparent; font-size: 12px; color: var(--muted); transition: all .12s; }
+  .ni:hover { background: var(--bg); color: var(--text); }
+  .ni.on { background: #eff6ff; color: #2563eb; border-left-color: #2563eb; font-weight: 600; }
+  .nn { width: 17px; height: 17px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; background: var(--bg); flex-shrink: 0; }
+  .ni.on .nn { background: #2563eb; color: #fff; }
+  .content { display: flex; flex-direction: column; gap: 1.25rem; }
+  .mod { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .mh { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); display: flex; gap: .9rem; align-items: flex-start; }
+  .mi { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+  .ml { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; margin-bottom: .1rem; }
+  .mt { font-size: 15px; font-weight: 700; }
+  .ms { font-size: 11px; color: var(--muted); margin-top: .15rem; }
+  .steps { padding: .25rem 0; }
+  .st { display: grid; grid-template-columns: 42px 1fr; padding: .65rem 1.25rem; border-bottom: 1px solid var(--border); }
+  .st:last-child { border-bottom: none; }
+  .sn { width: 21px; height: 21px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+  .stl { font-size: 13px; font-weight: 700; margin-bottom: .2rem; }
+  .std { font-size: 13px; color: var(--muted); line-height: 1.65; }
+  .std strong { color: var(--text); font-weight: 600; }
+  .tip { font-size: 12px; margin-top: .45rem; padding: .4rem .7rem; border-radius: 6px; border-left: 3px solid; line-height: 1.6; }
+  .tw { background: #fffbeb; border-color: #d97706; color: #92400e; }
+  .ti { background: #eff6ff; border-color: #3b82f6; color: #1e40af; }
+  .tg { background: #f0fdf4; border-color: #16a34a; color: #166534; }
+  .callout { padding: .9rem 1.25rem; background: var(--bg); border-top: 1px solid var(--border); }
+  .cls { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: .5rem; }
+  .cg { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px; }
+  .ci { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: .55rem .8rem; font-size: 12px; }
+  .ci strong { display: block; font-weight: 700; margin-bottom: .1rem; }
+  .ci span { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="hdr" style="max-width:960px;margin:0 auto">
+  <div class="tags">
+    <span class="tag t1">DS-1000</span>
+    <span class="tag t2">Kerst sessie</span>
+    <span class="tag t3">Hardstyle + thema</span>
+  </div>
+  <h1>Live Kerst Remix maken met de DS-1000</h1>
+  <p class="sub">Van intro tot drop — hardstyle remix met kerstthema, acapella slicen, gain staging en multi-scène opbouw</p>
+  <a class="vlink" href="https://www.youtube.com/watch?v=LOkF9bJ-SUs" target="_blank"><span class="dot"></span>Live Kerst Remix – Dave Hipke (Bax Music)</a>
+</div>
+
+<div class="layout">
+  <nav class="nav">
+    <div class="nav-title">6 Modules</div>
+    <div class="ni on" onclick="go(1,this)"><span class="nn">1</span>Voorbereiding</div>
+    <div class="ni" onclick="go(2,this)"><span class="nn">2</span>Intro bouwen</div>
+    <div class="ni" onclick="go(3,this)"><span class="nn">3</span>Opbouw & drop</div>
+    <div class="ni" onclick="go(4,this)"><span class="nn">4</span>Acapella slicen</div>
+    <div class="ni" onclick="go(5,this)"><span class="nn">5</span>Mixer & gain</div>
+    <div class="ni" onclick="go(6,this)"><span class="nn">6</span>Multi-stijl & afronden</div>
+  </nav>
+
+  <div class="content">
+
+    <!-- M1 -->
+    <div class="mod" id="M1">
+      <div class="mh">
+        <div class="mi" style="background:#fef3c7">🎄</div>
+        <div>
+          <div class="ml" style="color:#b45309">Module 1</div>
+          <div class="mt">Voorbereiding: samples klaarzetten</div>
+          <div class="ms">Altijd van tevoren doen</div>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="st"><div><div class="sn" style="background:#fef3c7;color:#92400e">1</div></div><div>
+          <div class="stl">Samples van tevoren maken</div>
+          <div class="std">Dave maakt zijn samples <strong>vóór de sessie</strong> — in dit geval die middag. Zo hoef je live niet te zoeken en kan je direct bouwen. Bereid de bouwstenen voor: kick, clap, thema-samples, acapella-fragmenten.</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#fef3c7;color:#92400e">2</div></div><div>
+          <div class="stl">Thema sample packs laden</div>
+          <div class="std">Zoek in je sample pack naar thema-geluid. Voor kerst: ga in de browser naar <strong>Christmas effects</strong>. Dave gebruikt zowel een Cashmere Pack als een apart Christmas-effecten pack. Zoek op "center voice", "merry christmas" of "bells".</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#fef3c7;color:#92400e">3</div></div><div>
+          <div class="stl">BPM instellen via het menu</div>
+          <div class="std">Stel direct <strong>150 BPM</strong> in via het menu-scherm. Klik op de BPM-waarde, voer 150 in. Zo weet je zeker dat alle samples die je daarna laadt op het juiste tempo lopen.</div>
+          <div class="tip tw">⚠️ Stel BPM in vóór je patterns vult — later wijzigen zonder Master Tempo klinkt scheef.</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#fef3c7;color:#92400e">4</div></div><div>
+          <div class="stl">Master Tempo aanzetten</div>
+          <div class="std">Zet <strong>Master Tempo</strong> (Times Stretch) aan. Hiermee volgen alle samples automatisch mee als je het BPM aanpast — ook thema-samples die op een ander origineel tempo staan.</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#fef3c7;color:#92400e">5</div></div><div>
+          <div class="stl">Scènes voor verschillende stijlen</div>
+          <div class="std">De DS-1000 kan <strong>meerdere stijlen in aparte scènes</strong> bevatten. Dave heeft naast de hardstyle-scène ook een tech house-scène klaargemaakt. Zo wissel je live van stijl zonder alles te hoeven overschrijven.</div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- M2 -->
+    <div class="mod" id="M2" style="display:none">
+      <div class="mh">
+        <div class="mi" style="background:#f0fdfa">🎹</div>
+        <div>
+          <div class="ml" style="color:#0f766e">Module 2</div>
+          <div class="mt">Intro bouwen: clap, sample, belletje</div>
+          <div class="ms">Pattern 1 t/m 4</div>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="st"><div><div class="sn" style="background:#f0fdfa;color:#0f766e">1</div></div><div>
+          <div class="stl">Intro begint met een clap</div>
+          <div class="std">Hardstyle intro's beginnen vaak met alleen een <strong>clap</strong>. Zoek een clap die fijn klinkt en zet die als eerste element in pattern 1. Het intro duurt 4, 8 of 16 tellen — begin kaal.</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#f0fdfa;color:#0f766e">2</div></div><div>
+          <div class="stl">Kerstgeluid toevoegen aan pattern 2</div>
+          <div class="std">Kopieer pattern 1 naar 2 en voeg er het kerst-thema sample aan toe. <strong>Kopiëren: huidig pattern → Kopiëren → volgend pattern → Plakken.</strong> Nu bouw je voort op het vorige zonder het te verliezen.</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#f0fdfa;color:#0f766e">3</div></div><div>
+          <div class="stl">Distortion op het thema-sample</div>
+          <div class="std">Een thema-sample klinkt soms te "zacht" naast een harde kick. Voeg <strong>distortion</strong> toe om het meer karakter te geven en beter te laten aansluiten bij de hardstyle-energie.</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#f0fdfa;color:#0f766e">4</div></div><div>
+          <div class="stl">Belletje vinden en inkorten</div>
+          <div class="std">Voeg een belletje toe voor kerstsfeer. Zoek in je pack op "bells" of "fairytale". Is de sample te lang? Ga naar <strong>Sampling → Edit</strong> en maak hem korter door het eindpunt te verplaatsen. Sla op onder een herkenbare naam.</div>
+          <div class="tip tg">✅ "Mix makers maken — qua keuze van componenten duurt het langer maar het publiek geniet er meer van."</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#f0fdfa;color:#0f766e">5</div></div><div>
+          <div class="stl">Sample sluizen (slicen)</div>
+          <div class="std">Wil je alleen een bepaald stuk van een sample gebruiken? <strong>Sluizen</strong> (slicen) stelt het begin- en eindpunt in. Zo gebruik je alleen de hit, de melodielijn of de vocal die je nodig hebt — niet de hele sample.</div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- M3 -->
+    <div class="mod" id="M3" style="display:none">
+      <div class="mh">
+        <div class="mi" style="background:#fff7ed">💥</div>
+        <div>
+          <div class="ml" style="color:#c2410c">Module 3</div>
+          <div class="mt">Opbouw naar de drop: sweep, kick, impact</div>
+          <div class="ms">Pattern 3 t/m 9</div>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="st"><div><div class="sn" style="background:#fff7ed;color:#9a3412">1</div></div><div>
+          <div class="stl">Sweep vinden via Search → impact</div>
+          <div class="std">Ga in de DS-1000 naar <strong>Search → typ "impact"</strong>. Hier vind je sweeps en impact-geluiden die spanning opbouwen vóór de drop. Zet de sweep op een apart pattern zodat je hem live kan triggeren.</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#fff7ed;color:#9a3412">2</div></div><div>
+          <div class="stl">Kick toevoegen met hardstyle pack</div>
+          <div class="std">Voeg de kick toe uit een <strong>dedicated hardstyle sample pack</strong>. Dit geeft veel meer karakter dan de factory kick. Zet hem in de sequencer op de vaste hardstyle-posities: 1, 5, 9, 13.</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#fff7ed;color:#9a3412">3</div></div><div>
+          <div class="stl">Hohoho sample sluizen</div>
+          <div class="std">Wil je een "Ho ho ho" vocal gebruiken? Neem hem op en sluizen direct: pak alleen het stukje dat je wil — niet de hele opname. Zo klinkt het clean en precies op de beat.</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#fff7ed;color:#9a3412">4</div></div><div>
+          <div class="stl">Sample verlengen met Shift</div>
+          <div class="std">Een sample is te kort voor het aantal bars dat je wil vullen? Gebruik <strong>Shift + de bar-knop</strong> om de sample te verlengen zodat hij de hele sectie vult zonder te herhalen op het verkeerde moment.</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#fff7ed;color:#9a3412">3</div></div><div>
+          <div class="stl">Patterns 6–9 combineren</div>
+          <div class="std">Combineer patterns 6, 7, 8 en 9 met elkaar voor de drop-sectie. Kopieer steeds het vorige pattern en voeg één element toe. Zo bouw je de energie stap voor stap op naar het volledige arrangement.</div>
+          <div class="tip ti">💡 Sequencer-overzicht bovenin laat alle actieve patterns zien — gebruik dit om bij te houden wat waar staat.</div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- M4 -->
+    <div class="mod" id="M4" style="display:none">
+      <div class="mh">
+        <div class="mi" style="background:#fdf2f8">✂️</div>
+        <div>
+          <div class="ml" style="color:#be185d">Module 4</div>
+          <div class="mt">Acapella slicen: 3 slices, strak op de beat</div>
+          <div class="ms">Slicer workflow stap voor stap</div>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="st"><div><div class="sn" style="background:#fdf2f8;color:#9d174d">1</div></div><div>
+          <div class="stl">Acapella laden en slicer openen</div>
+          <div class="std">Laad je acapella in een pattern. Ga naar <strong>Slicer</strong>. De DS-1000 maakt automatisch 16 slices. Probleem: 16 slices is te veel — de meeste zijn niet bruikbaar.</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#fdf2f8;color:#9d174d">2</div></div><div>
+          <div class="stl">Alle automatische slices verwijderen</div>
+          <div class="std"><strong>Verwijder alle 16 automatische slices.</strong> Begin opnieuw met een lege lei. Zo bepaal jij precies waar de snijpunten komen — niet de auto-detectie.</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#fdf2f8;color:#9d174d">3</div></div><div>
+          <div class="stl">Handmatig 3 slices plaatsen</div>
+          <div class="std">Voeg <strong>3 slices</strong> toe op de plekken die je wil gebruiken. Dave: "Ik heb er geen 16 nodig, gewoon een paar waarvan ik vind dat ze moeten gaan." Minder slices = meer controle.</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#fdf2f8;color:#9d174d">4</div></div><div>
+          <div class="stl">Slice-beginpunten verschuiven</div>
+          <div class="std">Loopt een slice niet lekker? Verplaats het beginpunt. Ga naar slice 2 of 3, zet hem iets eerder of later zodat hij precies op de beat aansluit. Test telkens of hij lekker loopt.</div>
+          <div class="tip tw">⚠️ Als de slicer niet lekker loopt: controleer of de slice-punten op beat-posities vallen, niet halverwege een tel.</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#fdf2f8;color:#9d174d">5</div></div><div>
+          <div class="stl">Break bouwen met de slices</div>
+          <div class="std">Gebruik de geslicete acapella in je break-sectie (patterns 11–12). Kopieer pattern 11 naar 12 en activeer de slices zodat de acapella terugkomt als de energie weer opbouwt naar de volgende drop.</div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- M5 -->
+    <div class="mod" id="M5" style="display:none">
+      <div class="mh">
+        <div class="mi" style="background:#f0f9ff">🎚️</div>
+        <div>
+          <div class="ml" style="color:#0369a1">Module 5</div>
+          <div class="mt">Mixer & gain staging</div>
+          <div class="ms">Alles uit het rood, per sample tweaken</div>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="st"><div><div class="sn" style="background:#e0f2fe;color:#0c4a6e">1</div></div><div>
+          <div class="stl">Naar het baas/mixer scherm gaan</div>
+          <div class="std">Als je alle samples hebt toegevoegd, ga naar het <strong>mixer-scherm</strong> (baas scherm). Hier zie je alle sporen met hun volume-meters. Dit is waar je de balans regelt.</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#e0f2fe;color:#0c4a6e">2</div></div><div>
+          <div class="stl">Alles uit het rood halen</div>
+          <div class="std">Begin zachtjes bij de bas en loop langs <strong>elk spoor</strong>. Draai alles wat in het rood staat omlaag. Rood = clipping = ongewenst vervormd geluid. Doe dit systematisch — spoor voor spoor.</div>
+          <div class="tip tw">⚠️ "Alle techniek mannen hebben een hekel aan alles in het rood — terecht."</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#e0f2fe;color:#0c4a6e">3</div></div><div>
+          <div class="stl">FX per sample toevoegen</div>
+          <div class="std">Naast de globale mixer kan je ook <strong>per sample FX</strong> toevoegen. Bijvoorbeeld: een reverb/delay op een specifieke sample die al bewerkt is, bovenop de globale mixer-instellingen.</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#e0f2fe;color:#0c4a6e">4</div></div><div>
+          <div class="stl">Compressie toevoegen aan bas-samples</div>
+          <div class="std">Hoor je dat een bas-sample te veel varieert in volume? Voeg <strong>compressie</strong> toe. Dit maakt het volume consistenter en geeft een voller, professioneler geluid — alsof de bas echt "zingt".</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#e0f2fe;color:#0c4a6e">5</div></div><div>
+          <div class="stl">BPM tijdelijk verhogen voor een sectie</div>
+          <div class="std">Wil je een sectie sneller? Verhoog BPM tijdelijk naar <strong>160 BPM</strong> (van 150). Met Master Tempo aan gaan alle samples mee. Test hoe het klinkt en zet daarna terug naar 150.</div>
+          <div class="tip tg">✅ Controleer na BPM-wijziging in de mixer of alle niveaus nog kloppen — sneller tempo = meer energie = soms clipping.</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#e0f2fe;color:#0c4a6e">6</div></div><div>
+          <div class="stl">Altijd opslaan vóór je verder gaat</div>
+          <div class="std">Dave: "Ik ga nu deze sowieso opslaan — voor hetzelfde geld wil iemand hem gedownload hebben." <strong>Sla op na elke belangrijke stap.</strong> Gebruik de USB-stick die in de DS-1000 zit.</div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- M6 -->
+    <div class="mod" id="M6" style="display:none">
+      <div class="mh">
+        <div class="mi" style="background:#f0fdf4">🌐</div>
+        <div>
+          <div class="ml" style="color:#15803d">Module 6</div>
+          <div class="mt">Multi-stijl werken & afronden</div>
+          <div class="ms">Tech house, CDJ mixen, lessons learned</div>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="st"><div><div class="sn" style="background:#dcfce7;color:#15803d">1</div></div><div>
+          <div class="stl">Aparte scène per muziekstijl</div>
+          <div class="std">Naast hardstyle heeft Dave ook een <strong>tech house-scène</strong> gemaakt in hetzelfde apparaat. Elke scène heeft eigen BPM, eigen samples, eigen patterns. Zo kan je live van stijl wisselen zonder alles te verliezen.</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#dcfce7;color:#15803d">2</div></div><div>
+          <div class="stl">Tech house ritme opbouwen</div>
+          <div class="std">Tech house werkt op een <strong>ander BPM en ritme</strong> dan hardstyle. Stel een nieuw project in op 124–128 BPM. Voeg een bas-loop toe via de slicer: verwijder overbodige slices, houd 2–3 over. Voeg delay toe zodat het lijkt dat hij "zingt".</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#dcfce7;color:#15803d">3</div></div><div>
+          <div class="stl">CDJ-track mixen met DS-1000</div>
+          <div class="std">Zoek een hardstyle-track die hetzelfde BPM heeft als je DS-1000 remix. <strong>Controleer dat de beatgrids gelijk lopen</strong> vóór je de mix maakt. Ga snel door de mix — kort stukje is genoeg om te tonen dat het werkt.</div>
+          <div class="tip ti">💡 "Uiteraard moet je zorgen dat de beatgrids gelijk zijn." Controleer dit altijd in Rekordbox vóór de set.</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#dcfce7;color:#15803d">4</div></div><div>
+          <div class="stl">Verkeerde samples corrigeren</div>
+          <div class="std">Heb je de verkeerde samples geladen in een pattern? Ga terug naar pattern 1, bekijk de sequencer, en verwijder wat er niet thuishoort. Dave: "Ik zie in de sequencer dat ik iets te enthousiast ben geweest." Corrigeer en bouw opnieuw.</div>
+        </div></div>
+        <div class="st"><div><div class="sn" style="background:#dcfce7;color:#15803d">5</div></div><div>
+          <div class="stl">Cashmere Pack downloaden</div>
+          <div class="std">De <strong>Cashmere Pack</strong> (externe sample pack) is gratis beschikbaar en bevat veel betere samples dan de factory preset. Stuur Dave een DM voor de download. Zet op USB, laad in DS-1000.</div>
+        </div></div>
+      </div>
+      <div class="callout">
+        <div class="cls">Lessen uit deze sessie</div>
+        <div class="cg">
+          <div class="ci"><strong>Voorbereiding = snelheid</strong><span>Samples van tevoren maken bespaart live stress</span></div>
+          <div class="ci"><strong>Slicer = 3 slices max</strong><span>Minder is meer — handmatig plaatsen werkt beter</span></div>
+          <div class="ci"><strong>Gain staging</strong><span>Altijd naar mixer-view en alles uit het rood</span></div>
+          <div class="ci"><strong>Meerdere stijlen</strong><span>Aparte scène per stijl in één apparaat</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function go(n, el) {
+  for (var i = 1; i <= 6; i++) {
+    var m = document.getElementById('M' + i);
+    if (m) m.style.display = i === n ? '' : 'none';
+  }
+  document.querySelectorAll('.ni').forEach(function(x) { x.classList.remove('on'); });
+  el.classList.add('on');
+}
+</script>
+</body>
+</html>

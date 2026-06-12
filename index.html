@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DJ DS-1000 Cursus — Dave Hipke</title>
+<style>
+  :root {
+    --bg: #0f0f0f;
+    --surface: #1a1a1a;
+    --surface2: #242424;
+    --border: rgba(255,255,255,0.08);
+    --text: #f0f0f0;
+    --muted: #888;
+    --accent: #3b82f6;
+    --accent-glow: rgba(59,130,246,0.15);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
+
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(15,15,15,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; gap: 2rem; height: 56px; }
+  .nav-logo { font-size: 15px; font-weight: 700; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; align-items: center; gap: 4px; flex: 1; overflow-x: auto; scrollbar-width: none; }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-link { font-size: 13px; padding: 6px 12px; border-radius: 6px; color: var(--muted); text-decoration: none; white-space: nowrap; transition: all .15s; }
+  .nav-link:hover { color: var(--text); background: var(--surface2); }
+  .nav-link.active { color: var(--accent); background: var(--accent-glow); }
+
+  /* HERO */
+  .hero { max-width: 1100px; margin: 0 auto; padding: 5rem 1.5rem 3rem; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; background: var(--accent-glow); color: var(--accent); border: 1px solid rgba(59,130,246,0.3); margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: .06em; }
+  .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  h1 { font-size: clamp(28px, 5vw, 52px); font-weight: 800; line-height: 1.1; letter-spacing: -.02em; margin-bottom: 1rem; }
+  h1 em { font-style: normal; color: var(--accent); }
+  .hero-sub { font-size: 17px; color: var(--muted); max-width: 580px; margin-bottom: 2rem; line-height: 1.7; }
+  .hero-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+  .hero-meta span { display: flex; align-items: center; gap: 5px; }
+  .hero-meta strong { color: var(--text); }
+
+  /* DIVIDER */
+  .section-divider { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+  .section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 1.25rem; padding-top: 3rem; display: flex; align-items: center; gap: 12px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* COURSE GRID */
+  .courses { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem 2rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .course-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; text-decoration: none; color: var(--text); transition: all .2s; display: flex; flex-direction: column; }
+  .course-card:hover { border-color: rgba(59,130,246,0.4); transform: translateY(-2px); background: var(--surface2); }
+  .card-thumb { height: 8px; width: 100%; }
+  .card-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; }
+  .card-tags { display: flex; gap: 6px; margin-bottom: .75rem; flex-wrap: wrap; }
+  .card-tag { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 12px; text-transform: uppercase; letter-spacing: .04em; }
+  .card-num { font-size: 11px; color: var(--muted); margin-bottom: .35rem; }
+  .card-title { font-size: 16px; font-weight: 700; margin-bottom: .5rem; line-height: 1.3; }
+  .card-desc { font-size: 13px; color: var(--muted); line-height: 1.65; flex: 1; }
+  .card-footer { padding: .85rem 1.25rem; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  .card-modules { font-size: 12px; color: var(--muted); }
+  .card-arrow { font-size: 18px; color: var(--muted); transition: transform .15s; }
+  .course-card:hover .card-arrow { transform: translateX(4px); color: var(--accent); }
+
+  /* COMBINED CARD (full width) */
+  .course-card.featured { grid-column: 1 / -1; flex-direction: row; align-items: stretch; }
+  .course-card.featured .card-thumb { width: 8px; height: auto; min-height: 100%; flex-shrink: 0; }
+  .course-card.featured .card-body { flex-direction: row; align-items: center; gap: 2rem; padding: 1.5rem; }
+  .course-card.featured .card-content { flex: 1; }
+  .course-card.featured .card-footer { border-top: none; border-left: 1px solid var(--border); min-width: 140px; flex-direction: column; align-items: flex-start; gap: .4rem; padding: 1.5rem; }
+
+  /* ABOUT */
+  .about { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .about-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; }
+  .about-icon { font-size: 22px; margin-bottom: .75rem; }
+  .about-title { font-size: 14px; font-weight: 700; margin-bottom: .4rem; }
+  .about-body { font-size: 13px; color: var(--muted); line-height: 1.7; }
+  .about-body a { color: var(--accent); text-decoration: none; }
+  .about-body a:hover { text-decoration: underline; }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 1.5rem; text-align: center; font-size: 12px; color: var(--muted); }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--text); }
+
+  /* ACCENT COLOURS per course */
+  .c-combined { background: linear-gradient(90deg,#3b82f6,#8b5cf6); }
+  .c-s1 { background: linear-gradient(90deg,#10b981,#3b82f6); }
+  .c-s2 { background: linear-gradient(90deg,#f59e0b,#ef4444); }
+  .c-special { background: linear-gradient(90deg,#8b5cf6,#ec4899); }
+  .c-kerst { background: linear-gradient(90deg,#ef4444,#f59e0b); }
+
+  .tag-blue { background: rgba(59,130,246,.15); color: #93c5fd; }
+  .tag-purple { background: rgba(139,92,246,.15); color: #c4b5fd; }
+  .tag-green { background: rgba(16,185,129,.15); color: #6ee7b7; }
+  .tag-amber { background: rgba(245,158,11,.15); color: #fcd34d; }
+  .tag-red { background: rgba(239,68,68,.15); color: #fca5a5; }
+  .tag-pink { background: rgba(236,72,153,.15); color: #f9a8d4; }
+
+  @media (max-width: 640px) {
+    .course-card.featured { flex-direction: column; }
+    .course-card.featured .card-thumb { width: 100%; height: 8px; }
+    .course-card.featured .card-body { flex-direction: column; }
+    .course-card.featured .card-footer { border-left: none; border-top: 1px solid var(--border); flex-direction: row; justify-content: space-between; min-width: unset; }
+    .about { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">🎛️ DJ <span>Course</span></a>
+    <div class="nav-links">
+      <a class="nav-link active" href="index.html">Home</a>
+      <a class="nav-link" href="cursus.html">Alle modules</a>
+      <a class="nav-link" href="sessie1.html">Sessie 1</a>
+      <a class="nav-link" href="sessie2.html">Sessie 2</a>
+      <a class="nav-link" href="especial2021.html">e-Special 2021</a>
+      <a class="nav-link" href="kerst.html">Kerst remix</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">Pioneer DJ DS-1000</div>
+  <h1>Leer remixen met<br><em>Dave Hipke</em></h1>
+  <p class="hero-sub">Vier live sessies omgezet naar een complete online cursus. Van je eerste sample opnemen tot een hardstyle remix live draaien naast een CDJ.</p>
+  <div class="hero-meta">
+    <span>🎬 <strong>4</strong> video's getranscribeerd</span>
+    <span>📚 <strong>12</strong> modules</span>
+    <span>⏱️ <strong>4+ uur</strong> lesmateriaal</span>
+    <span>🎓 Dave Hipke × <strong>Bax Music</strong></span>
+  </div>
+</div>
+
+<div class="section-divider">
+  <div class="section-label">Gecombineerde cursus</div>
+</div>
+
+<div class="courses">
+  <a class="course-card featured" href="cursus.html">
+    <div class="card-thumb c-combined"></div>
+    <div class="card-body">
+      <div class="card-content">
+        <div class="card-tags">
+          <span class="card-tag tag-blue">Alle video's</span>
+          <span class="card-tag tag-purple">12 modules</span>
+          <span class="card-tag tag-green">Aanbevolen</span>
+        </div>
+        <div class="card-title">Complete DS-1000 Cursus</div>
+        <div class="card-desc">De volledige cursus gebaseerd op alle 4 sessies gecombineerd. Behandelt setup, hardstyle kick, samples opnemen, vocals, slicer, arrangement, breaks & drops, mixer, CDJ-integratie en pro tips — alles in één overzicht.</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="card-modules">12 modules</div>
+      <div class="card-modules">Sessie 1 t/m 4</div>
+      <div class="card-arrow">→</div>
+    </div>
+  </a>
+</div>
+
+<div class="section-divider">
+  <div class="section-label">Per sessie</div>
+</div>
+
+<div class="courses">
+
+  <a class="course-card" href="sessie1.html">
+    <div class="card-thumb c-s1"></div>
+    <div class="card-body">
+      <div class="card-tags">
+        <span class="card-tag tag-green">Sessie 1</span>
+        <span class="card-tag tag-blue">Basis</span>
+      </div>
+      <div class="card-num">youtube.com/watch?v=xbZ5Dkp-FUo</div>
+      <div class="card-title">Leer Remixen met Dave</div>
+      <div class="card-desc">Nieuw project starten, BPM instellen, sample opnemen van CDJ, pattern structuur (intro → drop → break), opslaan op USB, snare & clap vinden.</div>
+    </div>
+    <div class="card-footer">
+      <div class="card-modules">~6 modules</div>
+      <div class="card-arrow">→</div>
+    </div>
+  </a>
+
+  <a class="course-card" href="sessie2.html">
+    <div class="card-thumb c-s2"></div>
+    <div class="card-body">
+      <div class="card-tags">
+        <span class="card-tag tag-amber">Sessie 2</span>
+        <span class="card-tag tag-red">Hardstyle</span>
+      </div>
+      <div class="card-num">youtube.com/watch?v=5mlEb2lfZ7w</div>
+      <div class="card-title">Hardstyle maken & CDJ combineren</div>
+      <div class="card-desc">Kick met distortion, 150 BPM instellen, samples lenen & slicen, patterns 1–4 opbouwen, master tempo, dubbelklik sync-truc, live CDJ combineren via ProLink.</div>
+    </div>
+    <div class="card-footer">
+      <div class="card-modules">7 modules</div>
+      <div class="card-arrow">→</div>
+    </div>
+  </a>
+
+  <a class="course-card" href="especial2021.html">
+    <div class="card-thumb c-special"></div>
+    <div class="card-body">
+      <div class="card-tags">
+        <span class="card-tag tag-purple">e-Special 2021</span>
+        <span class="card-tag tag-pink">Vocals</span>
+      </div>
+      <div class="card-num">youtube.com/watch?v=uZKytYI4ptA</div>
+      <div class="card-title">Live Remix met speciale gast</div>
+      <div class="card-desc">Vocal opnemen met microfoon (één take), kick altijd op tel 1/5/9/13, slicer per syllabe, distortion + reverb op vocals, loop modus CDJ voor sampling.</div>
+    </div>
+    <div class="card-footer">
+      <div class="card-modules">~6 modules</div>
+      <div class="card-arrow">→</div>
+    </div>
+  </a>
+
+  <a class="course-card" href="kerst.html">
+    <div class="card-thumb c-kerst"></div>
+    <div class="card-body">
+      <div class="card-tags">
+        <span class="card-tag tag-red">Kerst</span>
+        <span class="card-tag tag-amber">Thema & FX</span>
+      </div>
+      <div class="card-num">youtube.com/watch?v=LOkF9bJ-SUs</div>
+      <div class="card-title">Live Kerst Remix</div>
+      <div class="card-desc">Thema samples laden, sweep via Search → impact, acapella slicen (3 slices handmatig), gain staging in mixer, BPM tijdelijk verhogen, tech house scène bouwen.</div>
+    </div>
+    <div class="card-footer">
+      <div class="card-modules">6 modules</div>
+      <div class="card-arrow">→</div>
+    </div>
+  </a>
+
+</div>
+
+<div class="section-divider">
+  <div class="section-label">Over deze cursus</div>
+</div>
+
+<div class="about">
+  <div class="about-card">
+    <div class="about-icon">🎓</div>
+    <div class="about-title">Dave Hipke</div>
+    <div class="about-body">Eigenaar van <a href="https://www.djschoolinternational.nl" target="_blank">DJ School International</a> in Breda. Gespecialiseerd in Pioneer DJ DS-1000, remixen en live performance. Samenwerking met <a href="https://www.youtube.com/@BaxMusicNL" target="_blank">Bax Music</a> voor meerdere live sessies.</div>
+  </div>
+  <div class="about-card">
+    <div class="about-icon">🎛️</div>
+    <div class="about-title">Pioneer DJ DS-1000</div>
+    <div class="about-body">Standalone DJ sampler met 16 pads, scene- en pattern-gebaseerde workflow. Werkt standalone of in combinatie met CDJ/Nexus 2 via ProLink. Ideaal voor live remix performance naast een traditionele DJ set-up.</div>
+  </div>
+  <div class="about-card">
+    <div class="about-icon">📝</div>
+    <div class="about-title">Hoe is dit gemaakt?</div>
+    <div class="about-body">De 4 YouTube-video's zijn automatisch getranscribeerd via yt-dlp. De transcripten zijn vervolgens gefilterd — live-chat ruis verwijderd — en gestructureerd tot module-gebaseerde cursuspagina's. Totaal ~100.000 tekens verwerkt.</div>
+  </div>
+  <div class="about-card">
+    <div class="about-icon">🔗</div>
+    <div class="about-title">Originele video's</div>
+    <div class="about-body">
+      <a href="https://www.youtube.com/watch?v=xbZ5Dkp-FUo" target="_blank">Sessie 1 — Basis remix</a><br>
+      <a href="https://www.youtube.com/watch?v=5mlEb2lfZ7w" target="_blank">Sessie 2 — Hardstyle & CDJ</a><br>
+      <a href="https://www.youtube.com/watch?v=uZKytYI4ptA" target="_blank">e-Special 2021 — Vocals</a><br>
+      <a href="https://www.youtube.com/watch?v=LOkF9bJ-SUs" target="_blank">Kerst Remix — Thema & FX</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Cursusmateriaal gebaseerd op openbare YouTube-sessies van <a href="https://www.youtube.com/@BaxMusicNL" target="_blank">Bax Music</a> × Dave Hipke (DJ School International) &nbsp;·&nbsp; Niet-commercieel gebruik</p>
+</footer>
+
+</body>
+</html>

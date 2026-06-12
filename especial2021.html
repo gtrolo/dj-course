@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>e-Special 2021 – Remix met special guest & vocals</title>
+<style>
+  :root {
+    --bg: #f8f7f4;
+    --surface: #ffffff;
+    --border: #e5e2db;
+    --text: #1a1917;
+    --muted: #6b6860;
+    --accent: #2563eb;
+    --accent-light: #eff6ff;
+    --accent-border: #bfdbfe;
+    --amber: #d97706;
+    --amber-light: #fffbeb;
+    --teal: #0f766e;
+    --teal-light: #f0fdfa;
+    --purple: #7c3aed;
+    --purple-light: #f5f3ff;
+    --coral: #c2410c;
+    --coral-light: #fff7ed;
+    --green: #15803d;
+    --green-light: #f0fdf4;
+    --pink: #be185d;
+    --pink-light: #fdf2f8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+  .header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 2rem; }
+  .header-inner { max-width: 1000px; margin: 0 auto; }
+  .header-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1rem; }
+  .tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: .04em; }
+  .tag-device { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+  .tag-video { background: #f5f3ff; color: #5b21b6; border: 1px solid #ddd6fe; }
+  .tag-level { background: #fff7ed; color: #9a3412; border: 1px solid #fed7aa; }
+  h1 { font-size: 26px; font-weight: 700; margin-bottom: .5rem; }
+  .subtitle { color: var(--muted); font-size: 15px; max-width: 640px; }
+  .video-sources { margin-top: 1.25rem; display: flex; gap: 10px; flex-wrap: wrap; }
+  .video-chip { font-size: 12px; padding: 5px 12px; border-radius: 6px; background: var(--bg); border: 1px solid var(--border); color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+  .video-chip:hover { background: var(--accent-light); border-color: var(--accent-border); color: var(--accent); }
+  .video-chip .dot { width: 6px; height: 6px; border-radius: 50%; background: #ef4444; flex-shrink: 0; }
+
+  .layout { max-width: 1000px; margin: 0 auto; padding: 2rem; display: grid; grid-template-columns: 220px 1fr; gap: 2rem; align-items: start; }
+
+  .nav { position: sticky; top: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .nav-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: .85rem 1rem .4rem; }
+  .nav-item { display: flex; align-items: center; gap: 10px; padding: .6rem 1rem; cursor: pointer; border-left: 3px solid transparent; transition: all .15s; font-size: 13px; color: var(--muted); text-decoration: none; }
+  .nav-item:hover { background: var(--bg); color: var(--text); }
+  .nav-item.active { background: var(--purple-light); color: var(--purple); border-left-color: var(--purple); font-weight: 600; }
+  .nav-num { font-size: 11px; font-weight: 700; width: 18px; height: 18px; border-radius: 50%; background: var(--bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .nav-item.active .nav-num { background: var(--purple); color: white; }
+
+  .content { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .mod { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .mh { padding: 1.1rem 1.4rem; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 1rem; }
+  .mi { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .mm { flex: 1; }
+  .ml { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .15rem; }
+  .mt { font-size: 16px; font-weight: 700; }
+  .ms { font-size: 11px; margin-top: .2rem; color: var(--muted); }
+
+  .steps { padding: .5rem 0; }
+  .st { display: grid; grid-template-columns: 44px 1fr; padding: .7rem 1.4rem; border-bottom: 1px solid var(--border); }
+  .st:last-child { border-bottom: none; }
+  .sn-wrap { display: flex; align-items: flex-start; padding-top: 2px; }
+  .sn { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+  .sb {}
+  .stl { font-size: 13px; font-weight: 700; margin-bottom: .2rem; }
+  .std { font-size: 13px; color: var(--muted); line-height: 1.65; }
+  .std strong { color: var(--text); font-weight: 600; }
+  .tip { font-size: 12px; margin-top: .5rem; padding: .5rem .75rem; border-radius: 6px; border-left: 3px solid; line-height: 1.6; }
+  .tw { background: var(--amber-light); border-color: var(--amber); color: #92400e; }
+  .ti { background: var(--accent-light); border-color: var(--accent); color: #1e40af; }
+  .tg { background: var(--green-light); border-color: var(--green); color: #166534; }
+  .tp { background: var(--purple-light); border-color: var(--purple); color: #5b21b6; }
+
+  .callout { padding: 1rem 1.4rem; background: var(--bg); border-top: 1px solid var(--border); }
+  .cls { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: .5rem; }
+  .cg { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; }
+  .ci { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: .6rem .85rem; font-size: 12px; }
+  .ci strong { display: block; font-weight: 700; margin-bottom: .15rem; }
+  .ci span { color: var(--muted); }
+
+  /* Module accent colours */
+  .m1 .mi { background: #eff6ff; }
+  .m1 .ml { color: #2563eb; }
+  .m1 .sn { background: #eff6ff; color: #1d4ed8; }
+
+  .m2 .mi { background: var(--amber-light); }
+  .m2 .ml { color: var(--amber); }
+  .m2 .sn { background: var(--amber-light); color: #92400e; }
+
+  .m3 .mi { background: var(--purple-light); }
+  .m3 .ml { color: var(--purple); }
+  .m3 .sn { background: var(--purple-light); color: #5b21b6; }
+
+  .m4 .mi { background: var(--coral-light); }
+  .m4 .ml { color: var(--coral); }
+  .m4 .sn { background: var(--coral-light); color: #9a3412; }
+
+  .m5 .mi { background: var(--teal-light); }
+  .m5 .ml { color: var(--teal); }
+  .m5 .sn { background: var(--teal-light); color: #0f766e; }
+
+  .m6 .mi { background: var(--pink-light); }
+  .m6 .ml { color: var(--pink); }
+  .m6 .sn { background: var(--pink-light); color: #9d174d; }
+
+  .m7 .mi { background: var(--green-light); }
+  .m7 .ml { color: var(--green); }
+  .m7 .sn { background: var(--green-light); color: #166534; }
+
+  @media (max-width: 700px) {
+    .layout { grid-template-columns: 1fr; }
+    .nav { position: static; display: flex; flex-wrap: wrap; gap: 4px; padding: .5rem; }
+    .nav-title { display: none; }
+    .nav-item { border-radius: 6px; border-left: none; padding: .4rem .7rem; font-size: 12px; }
+    .nav-item.active { border-left: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-tags">
+      <span class="tag tag-device">Pioneer DJ DS-1000</span>
+      <span class="tag tag-video">e-Special 2021</span>
+      <span class="tag tag-level">Gevorderd</span>
+    </div>
+    <h1>e-Special 2021 – Remix met special guest & vocals</h1>
+    <p class="subtitle">Dave Hipke maakt live een remix samen met een speciale gast: live vocals opnemen via microfoon, editen met de Slicer, FX toepassen en samples combineren van meerdere platen.</p>
+    <div class="video-sources">
+      <a class="video-chip" href="https://www.youtube.com/watch?v=uZKytYI4ptA" target="_blank"><span class="dot"></span>e-Special 2021 – Remix met special guest, vocals</a>
+    </div>
+  </div>
+</div>
+
+<div class="layout">
+  <nav class="nav">
+    <div class="nav-title">Modules</div>
+    <a class="nav-item active" href="#m1"><span class="nav-num">1</span>Setup & inspiratie</a>
+    <a class="nav-item" href="#m2"><span class="nav-num">2</span>Beat opbouwen</a>
+    <a class="nav-item" href="#m3"><span class="nav-num">3</span>Live vocals opnemen</a>
+    <a class="nav-item" href="#m4"><span class="nav-num">4</span>Vocals editen & Slicer</a>
+    <a class="nav-item" href="#m5"><span class="nav-num">5</span>FX op vocals</a>
+    <a class="nav-item" href="#m6"><span class="nav-num">6</span>Meerdere platen combineren</a>
+    <a class="nav-item" href="#m7"><span class="nav-num">7</span>Live performen</a>
+  </nav>
+
+  <div class="content">
+
+    <!-- MODULE 1 -->
+    <div class="mod m1" id="m1">
+      <div class="mh">
+        <div class="mi">💡</div>
+        <div class="mm">
+          <div class="ml">Module 1</div>
+          <div class="mt">Setup & inspiratie vinden</div>
+          <div class="ms">e-Special 2021 – Remix met special guest, vocals</div>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">1</div></div>
+          <div class="sb">
+            <div class="stl">Geïnspireerd raken via je tracklist</div>
+            <div class="std">Begin met luisteren naar je tracklist — de platen die je al hebt op je rekken of in je speler. Uit die tracks ga je <strong>kleine samples</strong> destilleren die de basis vormen van je remix. Je hoeft dus niet van nul te componeren.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">2</div></div>
+          <div class="sb">
+            <div class="stl">Mengtafel als centraal punt</div>
+            <div class="std">Je hebt een <strong>mengtafel</strong> nodig. Die zorgt ervoor dat alle signalen — van CDJ, microfoon, iPhone, of andere apparaten — samenkomen en in de DS-1000 kunnen worden opgenomen. Zonder mengtafel geen gecombineerde opnames.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">3</div></div>
+          <div class="sb">
+            <div class="stl">BPM checken vóór je begint</div>
+            <div class="std">Controleer altijd het <strong>BPM van de brontracks</strong> vóórdat je samples opneemt. In deze sessie staat een track op 145 BPM. Zorg dat je projecttempo overeenkomt, of gebruik Time Stretch. Verkeerd tempo = enorm veel extra werk achteraf.</div>
+            <div class="tip tw">Dave benadrukt: beats per minuut controleren is stap één. Sla dit niet over.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 2 -->
+    <div class="mod m2" id="m2">
+      <div class="mh">
+        <div class="mi">🥁</div>
+        <div class="mm">
+          <div class="ml">Module 2</div>
+          <div class="mt">Beat opbouwen: klep, kick & snare</div>
+          <div class="ms">e-Special 2021 – Remix met special guest, vocals</div>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">1</div></div>
+          <div class="sb">
+            <div class="stl">Klep als startpunt van het intro</div>
+            <div class="std">Dave begint in deze sessie met een <strong>klep</strong> (hihat/clap). De klep staat altijd op de <strong>eerste tel</strong> — niet op twee of vier. Dit is het fundament van het intro-patroon. Zet hem in de sequencer op positie 1.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">2</div></div>
+          <div class="sb">
+            <div class="stl">Kick lenen van een externe plaat</div>
+            <div class="std">Je hoeft de kick niet uit de ingebouwde database te pakken — je kunt hem ook <strong>lenen van een CDJ-track</strong>. Speel de plaat af, zoek het kickgeluid op, en neem dat stukje op als sample via de sampling-modus van de DS-1000.</div>
+            <div class="tip ti">De kick, snare en hihat hoef je nooit zelf te maken. Lenen van bestaande platen is een legale en creatieve manier om unieke geluiden te krijgen.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">3</div></div>
+          <div class="sb">
+            <div class="stl">Opbouw per pattern</div>
+            <div class="std">Pattern 1: alleen klep. Pattern 2: klep + kick. Pattern 3: kick + snare erbij. Zo bouw je stap voor stap op. In de sequencer zie je precies welke elementen actief zijn per stap — "what you see is what you get".</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">4</div></div>
+          <div class="sb">
+            <div class="stl">Kick plaatsing in de sequencer</div>
+            <div class="std">De kick staat altijd op <strong>stap 1, 5, 9 en 13</strong> van de 16-staps sequencer. Dit geeft je een four-on-the-floor patroon dat door alle genres heen werkt.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 3 -->
+    <div class="mod m3" id="m3">
+      <div class="mh">
+        <div class="mi">🎙️</div>
+        <div class="mm">
+          <div class="ml">Module 3</div>
+          <div class="mt">Live vocals opnemen via microfoon</div>
+          <div class="ms">e-Special 2021 – Remix met special guest, vocals</div>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">1</div></div>
+          <div class="sb">
+            <div class="stl">Microfoon aansluiten</div>
+            <div class="std">Sluit een microfoon aan op de mengtafel. Het signaal loopt van de mengtafel via de <strong>line-in</strong> naar de DS-1000. Zo kun je live gezongen of gesproken tekst direct samplen in het apparaat.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">2</div></div>
+          <div class="sb">
+            <div class="stl">Sampling-modus activeren</div>
+            <div class="std">Druk op <strong>Sampling</strong>. Kies het pad (in deze sessie pad 9) waar de vocal sample terecht moet komen. Kies de opnameduur: <strong>Manual</strong> geeft je de meeste controle — je drukt in om te starten en opnieuw in om te stoppen.</div>
+            <div class="tip ti">Kies Manual als de vocalpartij onregelmatig lang is. Zo heb je geen vaste tijdslimiet en pak je precies wat je nodig hebt.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">3</div></div>
+          <div class="sb">
+            <div class="stl">Aftellen vóór de opname</div>
+            <div class="std">Gebruik een <strong>mondeling aftellen</strong> (3-2-1) zodat de zanger precies weet wanneer hij moet beginnen. De DS-1000 heeft geen ingebouwde metronoom-signaal voor de vocalist — communicatie is essentieel.</div>
+            <div class="tip tw">De opname moet <strong>in één take</strong> goed zijn. Er is geen overdub-modus. Herhaal zo vaak als nodig tot de take klopt.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">4</div></div>
+          <div class="sb">
+            <div class="stl">Meerdere vocal samples opnemen</div>
+            <div class="std">Je kunt meerdere verschillende zinnen of vocaalstukken opnemen als aparte samples op verschillende pads. In deze sessie worden o.a. "Who support your stay", "Box Music" en korte melodische stukjes als losse samples opgenomen — elk op een eigen pad.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 4 -->
+    <div class="mod m4" id="m4">
+      <div class="mh">
+        <div class="mi">✂️</div>
+        <div class="mm">
+          <div class="ml">Module 4</div>
+          <div class="mt">Vocals editen & Slicer gebruiken</div>
+          <div class="ms">e-Special 2021 – Remix met special guest, vocals</div>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">1</div></div>
+          <div class="sb">
+            <div class="stl">Sample op de grid zetten</div>
+            <div class="std">Na het opnemen staat de vocal sample waarschijnlijk <strong>niet precies op de beat</strong>. Ga naar de edit-modus: je ziet de golfvorm. Versleep het beginpunt tot het exact op de eerste beat valt. Dave gebruikt de touchscreen hiervoor.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">2</div></div>
+          <div class="sb">
+            <div class="stl">Losse grids verwijderen en opnieuw zetten</div>
+            <div class="std">De DS-1000 zet automatisch gridmarkers (cue-punten) in de sample. Als deze verkeerd staan, verwijder ze dan allemaal en <strong>zet handmatig nieuwe</strong> op de juiste posities. Zo bepaal jij waar de Slicer straks op kan knippen.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">3</div></div>
+          <div class="sb">
+            <div class="stl">Slicer activeren</div>
+            <div class="std">Ga naar <strong>Slicer</strong>. De sample wordt automatisch opgeknipt in segmenten op basis van de gridmarkers. Elk segment is gekoppeld aan een pad. Je kunt nu de vocaalstukken afzonderlijk triggeren en combineren.</div>
+            <div class="tip tp">Met de Slicer kun je de zang letterlijk herschikken: woorden omwisselen, herhalen, of ritmisch laten stuiteren. Dit is de krachtigste edit-tool voor vocals.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">4</div></div>
+          <div class="sb">
+            <div class="stl">Vocal volume aanpassen via de mixer</div>
+            <div class="std">Als de vocals te hard zijn ten opzichte van de beat, ga naar de <strong>mixer</strong> en zoek het spoor van de vocal sample. Verlaag het volume van dat specifieke spoor. Je kunt ook de hoogste piek in de golfvorm bekijken om te bepalen waar het luidst is.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 5 -->
+    <div class="mod m5" id="m5">
+      <div class="mh">
+        <div class="mi">🎛️</div>
+        <div class="mm">
+          <div class="ml">Module 5</div>
+          <div class="mt">FX toepassen op vocals</div>
+          <div class="ms">e-Special 2021 – Remix met special guest, vocals</div>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">1</div></div>
+          <div class="sb">
+            <div class="stl">Distortion toevoegen</div>
+            <div class="std">Ga naar de <strong>FX-sectie</strong> van de DS-1000 en voeg Distortion toe aan het vocal-spoor. Dit geeft de stem een ruwe, industriële klank. Dave draait de distortion op tot het effect goed hoorbaar is zonder het geheel te vernielen.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">2</div></div>
+          <div class="sb">
+            <div class="stl">Reverb (nagalm) op de stem</div>
+            <div class="std">Voeg een <strong>Reverb</strong> toe voor ruimtegevoel. Een lichte reverb maakt de stem groter en meer passend in een club-context. Dave zet dit in via de FX-knop en stelt de hoeveelheid in met de bijbehorende knop.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">3</div></div>
+          <div class="sb">
+            <div class="stl">Compressie instellen</div>
+            <div class="std">Een kale vocal zonder compressie klinkt ongelijkmatig — soms te zacht, soms te hard. Voeg <strong>Compressie</strong> toe via de DS-1000 (of externe mengtafel) om het volume van de stem gelijk te trekken. Dit maakt de vocal geschikter voor een remix.</div>
+            <div class="tip tg">Compressie + lichte reverb is de standaard basis voor vrijwel elke vocalsample in een dansbare remix.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">4</div></div>
+          <div class="sb">
+            <div class="stl">Solo-modus gebruiken voor FX-tweaken</div>
+            <div class="std">Zet de rest van de instrumenten tijdelijk op <strong>mute</strong> (solo-modus) om de vocal geïsoleerd te horen terwijl je FX aanpast. Zo hoor je precies wat het effect doet zonder afleiding van andere geluiden.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 6 -->
+    <div class="mod m6" id="m6">
+      <div class="mh">
+        <div class="mi">💿</div>
+        <div class="mm">
+          <div class="ml">Module 6</div>
+          <div class="mt">Samples van meerdere platen combineren</div>
+          <div class="ms">e-Special 2021 – Remix met special guest, vocals</div>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">1</div></div>
+          <div class="sb">
+            <div class="stl">Samples lenen van meerdere tracks</div>
+            <div class="std">Je bent niet gebonden aan één plaat. Dave combineert in deze sessie samples van <strong>meerdere tracks</strong>: een kick van de ene plaat, een melodisch element van een andere, en live vocals van de gast. Dit is de kern van remixen.</div>
+            <div class="tip ti">Gebruik altijd maar een <strong>heel kort stukje</strong> van een externe plaat (4 tellen) om auteursrechtproblemen te vermijden. Je eigen aanvullingen maken het origineel.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">2</div></div>
+          <div class="sb">
+            <div class="stl">Loop-modus inzetten voor herkenbare fragmenten</div>
+            <div class="std">Wil je een langer stuk van een externe plaat gebruiken? Gebruik de <strong>Loop-modus</strong> op de CDJ (stel bijv. een 16-tel-loop in) en neem dat herhalende fragment dan op als sample in de DS-1000. Zo krijg je een perfect lossend loop-geluid.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">3</div></div>
+          <div class="sb">
+            <div class="stl">Elke pattern een andere kick</div>
+            <div class="std">Dave kiest bewust per pattern een <strong>andere kick</strong> om meer energie en dynamiek te creëren naarmate de remix vordert. Pattern 1 heeft een subtiele kick, latere patterns hebben een hardere of meer aanwezige kick.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">4</div></div>
+          <div class="sb">
+            <div class="stl">Alle sample-slots zijn zichtbaar in de sequencer</div>
+            <div class="std">In de sequencer-weergave zie je alle actieve samples tegelijk als horizontale sporen. Zo heb je overzicht over welke geluiden in welk patroon actief zijn. "What you see is what you get."</div>
+          </div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="cls">Bronnen in deze sessie</div>
+        <div class="cg">
+          <div class="ci"><strong>CDJ-plaat A</strong><span>Kick en clap geleend</span></div>
+          <div class="ci"><strong>CDJ-plaat B</strong><span>Melodisch fragment (ultimate seduction)</span></div>
+          <div class="ci"><strong>Microfoon – gast</strong><span>Live vocals "Who support your stay"</span></div>
+          <div class="ci"><strong>Microfoon – gast</strong><span>Melodische zang "na na na"</span></div>
+          <div class="ci"><strong>Box Music sample</strong><span>Live opgenomen shout-out</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 7 -->
+    <div class="mod m7" id="m7">
+      <div class="mh">
+        <div class="mi">🎪</div>
+        <div class="mm">
+          <div class="ml">Module 7</div>
+          <div class="mt">Live performen met de DS-1000</div>
+          <div class="ms">e-Special 2021 – Remix met special guest, vocals</div>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">1</div></div>
+          <div class="sb">
+            <div class="stl">Pads live triggeren tijdens een set</div>
+            <div class="std">In een live show kun je de <strong>pads direct aanraken</strong> om samples te triggeren terwijl je een track draait op de CDJ. Je kunt zo live vocalen, effecten of ritmische elementen invoegen precies op het moment dat jij dat wilt.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">2</div></div>
+          <div class="sb">
+            <div class="stl">Patterns doorzetten tijdens de show</div>
+            <div class="std">Druk het ene pattern in, wacht tot het einde van de maat, druk daarna het volgende in. Op die manier navigeer je live door je remix. Dave laat de gast zelf een pattern indrukken om te ervaren hoe intuïtief dit werkt.</div>
+            <div class="tip tg">De DS-1000 gaat pas naar het volgende pattern aan het einde van de huidige maat — je kunt niet te vroeg of te laat indrukken, het apparaat wacht op de juiste beat.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">3</div></div>
+          <div class="sb">
+            <div class="stl">Melodielijn spelen via de pads</div>
+            <div class="std">Als je een sample in <strong>toonhoogtemodus</strong> zet, kun je via de pads verschillende noten spelen van dezelfde sample. Zo speel je een melodie live op de pads — vergelijkbaar met een mini-keyboard.</div>
+          </div>
+        </div>
+        <div class="st">
+          <div class="sn-wrap"><div class="sn">4</div></div>
+          <div class="sb">
+            <div class="stl">De show stelen met de DS-1000</div>
+            <div class="std">Dave benadrukt: de DS-1000 is het instrument waarmee je als DJ de <strong>show kunt stelen</strong> tijdens een set. In plaats van alleen tracks te draaien, voeg je live elementen toe die het publiek nergens anders hoort. Dat maakt jouw set uniek.</div>
+            <div class="tip tp">Oefen je live patronen thuis zodat je op het podium niet hoeft na te denken — dan kun je je focussen op de energie van het publiek.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /layout -->
+
+<script>
+  const items = document.querySelectorAll('.nav-item');
+  const modules = document.querySelectorAll('.mod');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    modules.forEach(m => { if (window.scrollY >= m.offsetTop - 120) current = m.id; });
+    items.forEach(i => {
+      i.classList.toggle('active', i.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+</body>
+</html>
